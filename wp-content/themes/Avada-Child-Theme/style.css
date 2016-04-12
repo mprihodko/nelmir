@@ -4,3 +4,174 @@ Description: Child theme for the Avada
 Author: Your name here
 Template: Avada
 */
+body .ui-widget-overlay{
+z-index: 999 !important;
+}
+
+body #wrapper {
+    background-color: transparent;
+}
+
+body .header-v4 #header {
+    background-color: transparent;
+       border-bottom:  none;
+}
+
+body #main {
+    background-color: transparent;
+    padding-top: 1%;
+}
+
+
+
+#rev_slider_5_1_wrapper {
+        width: 28%;
+        margin: 31px auto 0px !important;
+}
+
+
+html, body {
+   background-color: transparent !important; 
+}
+
+.logo{
+    max-width: 19.8%;}
+
+#slider_main_new_pro{
+    position: relative;
+    z-index: 50000; 
+}
+
+.nav-holder{
+    display: none;
+}
+body .header-v4 #header{
+    padding-top: 22px;
+}
+.header-v4 #header .search{
+    margin: 0;
+    clear: right;
+}
+
+#wrapper .header-v4 #header .search-table {
+    width: 165px;
+}
+
+.informzz {
+    float: right;
+    width: 190px;
+    
+}
+
+.informzz div {
+    padding-left: 40px;
+    line-height: 1.7;
+}
+
+.adress{
+    color: #1b4297;
+    font-size: 12px;
+    background-image: url('./inc/img/punct.png');
+     background-repeat: no-repeat;
+         background-position: 6% 50%;
+}
+
+.telepone{
+    color: #291670;
+    font-size: 20px;
+    background-image: url('./inc/img/phone.png');
+    background-repeat: no-repeat;
+     background-position: 6% 50%;
+}
+
+.header-banner input {
+    font-size: 10px;
+}
+
+.search-button1 {
+    background-color: #fff;
+    border: 0;
+        
+    float: left;
+    background-image: url('./inc/img/lupa.png');
+        width: 40px;
+    height: 40px;
+    background-position: center center;
+    box-shadow: none;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+        position: absolute;
+    right: 0;
+    top: 0;
+}
+#searchform13 {
+    position: relative;
+}
+
+.search-field .searchgtr {
+    border: none !important;
+    
+}
+
+.search-button1 #searchsubmit{
+    border: 0;
+    background-color: #fff;
+    
+}
+
+#wrapper .search-field{
+    display: block;
+    float: left;
+}
+
+#wrapper .search-field{
+    padding-top: 7px;
+    width: 90%
+}
+
+.footer-area {
+    background-color: transparent !important; 
+    border-color: transparent !important; 
+}
+
+#footer {
+    background:  #0c0138 !important;
+}
+
+.footermain {
+    max-width: 940px;
+    width: 100%;
+    color: #fff;
+    min-height: 1px;
+    margin: 0 auto;
+}
+.footerblock{
+    width: 19%;
+    box-sizing: border-box;
+    display: inline-block;
+    min-height: 1px;
+    vertical-align: top;
+}
+
+.footerblock p {
+    margin: 2px 0px;
+}
+.footerblock li {
+list-style-type: none;
+}
+.footerblock ul {
+margin: 0;
+}
+
+.footerblock a {
+    color: #fff;
+}
+
+.footerblock a:visited {
+    color: #fff;
+}
+
+.footerblock a:hover {
+    color: #57d9f6;
+    text-decoration: underline;
+}

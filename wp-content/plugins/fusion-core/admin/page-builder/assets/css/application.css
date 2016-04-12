@@ -1123,7 +1123,7 @@ body .fusion-dragging-element .innerElement img {
 	background:#000 !important;
 	opacity:0.7 !important;
 	position:fixed !important;
-	z-index: 1001 !important;
+	z-index: 999 !important;
 }
 .fusionb-dialog-form .ui-dialog-titlebar-close{
 	background:none !important;
