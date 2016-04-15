@@ -112,6 +112,10 @@ body .header-v4 #header{
     border: none !important;
     
 }
+.search-field .searchgtr:focus{
+    outline: none;
+    border: none !important;
+}
 
 .search-button1 #searchsubmit{
     border: 0;
@@ -175,3 +179,5 @@ margin: 0;
     color: #57d9f6;
     text-decoration: underline;
 }
+
+
