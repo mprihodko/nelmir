@@ -53,10 +53,12 @@ class Akismet {
 
 		// Run this early in the pingback call, before doing a remote fetch of the source uri
 		add_action( 'xmlrpc_call', array( 'Akismet', 'pre_check_pingback' ) );
+
 		
 		// Jetpack compatibility
 		add_filter( 'jetpack_options_whitelist', array( 'Akismet', 'add_to_jetpack_options_whitelist' ) );
 		add_action( 'update_option_wordpress_api_key', array( 'Akismet', 'updated_option' ), 10, 2 );
+
 	}
 
 	public static function get_api_key() {
@@ -84,6 +86,7 @@ class Akismet {
 
 		return $response[1];
 	}
+
 
 	/**
 	 * Add the akismet option to the Jetpack options management whitelist.
@@ -165,7 +168,9 @@ class Akismet {
 
 			// Send any potentially useful $_SERVER vars, but avoid sending junk we don't need.
 			if ( preg_match( "/^(HTTP_|REMOTE_ADDR|REQUEST_URI|DOCUMENT_URI)/", $key ) ) {
+
 				$comment[ "$key" ] = $value;
+
 			}
 		}
 
@@ -289,9 +294,11 @@ class Akismet {
 					elseif ( self::$last_comment['akismet_result'] == 'false' ) {
 						update_comment_meta( $comment->comment_ID, 'akismet_result', 'false' );
 						self::update_comment_history( $comment->comment_ID, '', 'check-ham' );
+
 						// Status could be spam or trash, depending on the WP version and whether this change applies:
 						// https://core.trac.wordpress.org/changeset/34726
 						if ( $comment->comment_approved == 'spam' || $comment->comment_approved == 'trash' ) {
+
 							if ( wp_blacklist_check($comment->comment_author, $comment->comment_author_email, $comment->comment_author_url, $comment->comment_content, $comment->comment_author_IP, $comment->comment_agent) )
 								self::update_comment_history( $comment->comment_ID, '', 'wp-blacklisted' );
 							else
@@ -750,7 +757,9 @@ class Akismet {
 		$comment1 = (array) $comment1;
 		$comment2 = (array) $comment2;
 		
+
 		$comments_match = (
+
 			   isset( $comment1['comment_post_ID'], $comment2['comment_post_ID'] )
 			&& intval( $comment1['comment_post_ID'] ) == intval( $comment2['comment_post_ID'] )
 			&& (
@@ -762,9 +771,11 @@ class Akismet {
 				substr( $comment1['comment_author'], 0, 248 ) == substr( $comment2['comment_author'], 0, 248 )
 				|| substr( stripslashes( $comment1['comment_author'] ), 0, 248 ) == substr( $comment2['comment_author'], 0, 248 )
 				|| substr( $comment1['comment_author'], 0, 248 ) == substr( stripslashes( $comment2['comment_author'] ), 0, 248 )
+
 				// Certain long comment author names will be truncated to nothing, depending on their encoding.
 				|| ( ! $comment1['comment_author'] && strlen( $comment2['comment_author'] ) > 248 )
 				|| ( ! $comment2['comment_author'] && strlen( $comment1['comment_author'] ) > 248 )
+
 				)
 			&& (
 				// The email max length is 100 characters, limited by the VARCHAR(100) column type.
@@ -778,7 +789,9 @@ class Akismet {
 			)
 		);
 
+
 		return $comments_match;
+
 	}
 	
 	// Does the supplied comment match the details of the one most recently stored in self::$last_comment?
@@ -1206,4 +1219,5 @@ p {
 
 		return $meta_value;
 	}
+
 }
