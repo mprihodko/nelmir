@@ -9,3 +9,4 @@ function avada_child_scripts() {
 add_action('wp_enqueue_scripts', 'avada_child_scripts');
 
 require_once (get_stylesheet_directory() . "/corefunctions/functinscore.php");
+require_once (get_stylesheet_directory() . "/inc/post_types/init.php");
