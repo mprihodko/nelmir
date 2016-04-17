@@ -960,6 +960,7 @@ $body_classes[] = 'mobile-menu-design-' . $smof_data['mobile_menu_design'];
 	avada_header_template( 'Below' );
 	?>
 	<div id="sliders-container">
+           
 	<?php
 	if( is_search() ) {
 		$slider_page_id = '';
@@ -1083,5 +1084,6 @@ $body_classes[] = 'mobile-menu-design-' . $smof_data['mobile_menu_design'];
 		$main_class = 'width-100';
 	}
 	?>
+        <div class="navbarmain"> <?php wp_nav_menu( array('menu' => 'main' )); ?></div>
 	<div id="main" class="clearfix <?php echo $main_class; ?>" style="<?php echo $main_css; ?>">
 		<div class="avada-row" style="<?php echo $row_css; ?>">

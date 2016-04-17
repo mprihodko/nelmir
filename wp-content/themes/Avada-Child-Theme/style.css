@@ -179,5 +179,76 @@ margin: 0;
     color: #57d9f6;
     text-decoration: underline;
 }
+.navbarmain {
+position:absolute;
+width: 100%;
+padding-top: 192px;
+}
+.menu-main-container{
+max-width: 940px;
+margin: 0 auto;
+z-index: 250;
+}
 
+.navbarmain ul {
+padding: 0;
+margin: 0;
+width: 100%;
+}
+
+.navbarmain li{
+
+width:19.6%;
+margin: 0;
+margin-right: 2px;
+padding: 0;
+float: left;
+list-style-type: none;
+text-align: center;
+line-height: 3.6;
+ background: linear-gradient(to top, #0a78c6, #0192dd );
+ cursor: pointer;
+
+}
+
+.navbarmain .current_page_item {
+     background: linear-gradient(to top, #0192dd, #1b4095);
+}
+
+.navbarmain li:hover{
+     background: linear-gradient(to top, #0192dd, #1b4095);
+}
+
+.navbarmain li:last-child{
+    margin-right: 0px;
+    width: 20.5%;
+}
+
+.navbarmain a {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.navbarmain a:hover {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.navbarmain a:active {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.navbarmain a:focus {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.sidebar ,sidebar-2 {
+        padding-top: 260px;
+}
 
