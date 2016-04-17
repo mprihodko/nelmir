@@ -1,4 +1,5 @@
 <?php
+
 function avada_child_scripts() {
 	if ( ! is_admin() && ! in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ) ) ) {
 		$theme_info = wp_get_theme();
@@ -6,3 +7,5 @@ function avada_child_scripts() {
 	}
 }
 add_action('wp_enqueue_scripts', 'avada_child_scripts');
+
+require_once (get_stylesheet_directory() . "/corefunctions/functinscore.php");
