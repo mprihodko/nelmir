@@ -248,7 +248,181 @@ line-height: 3.6;
     color: #fff;
 }
 
-.sidebar ,sidebar-2 {
+#sidebar ,#sidebar-2 {
         padding-top: 260px;
+        list-style: none;
 }
 
+.widgettitle {
+        background: linear-gradient(to top, #1b4095, #0192dd);
+        list-style: none;
+        color: #fff;
+        padding: 10px 10px;
+        border-radius: 5px 0px 0px 5px;
+        font-size: 12px !important;
+        text-transform: uppercase;
+        margin-bottom: 0;
+}
+.sidebar li{
+    border-bottom: none !important;
+    
+}
+#sidebar #menu-category li{
+    position: relative;
+}
+#sidebar #menu-category li:before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background-color: #038dd8;
+    border-radius: 50%;
+    position: absolute;
+    left: 15px;
+    top: 12px;
+}
+
+#sidebar #menu-category li:first-child:before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background-color: #038dd8;
+    border-radius: 50%;
+    position: absolute;
+    left: 15px;
+    top: 27px;
+}
+.sidebar .menu li {
+    padding: 5px 0px 2px 35px ;
+    
+}
+.sidebar .menu li:last-child{
+    padding: 5px 0px 20px 35px ;
+}
+.sidebar .menu li:first-child{
+    padding: 20px 0px 2px 35px ;
+}
+.sidebar a{
+    font-size: 12px;
+}
+.sidebar menu a:hover {
+  color: #d42019 !important;  
+}
+#sidebar .widgettitle {
+    max-width: 185px;
+    border-radius: 0px 5px 5px 0px;
+}
+#sidebar .widget{
+   max-width: 185px; 
+   background-color: #fff;
+    border-radius: 0px 5px 5px 0px;
+}
+#sidebar-2 .widget {
+    background-color: #fff;
+    border-radius: 5px 0px 0px 5px;
+}
+
+#sidebar  a:before ,#sidebar-2  a:before {
+    content: none;
+}
+
+#menu-zaivki .menu-item:first-child a{
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #519353 !important;
+}
+
+#menu-zaivki .menu-item:last-child a{
+     font-size: 13px;
+    text-transform: uppercase;
+    color: #d42019 !important;
+}
+
+#menu-zaivki .menu-item:first-child {
+   padding: 10px 5px 10px 45px;
+   position: relative;
+   background-color: #fff;
+   border-radius: 5px;
+   border: 1px solid #519353 !important;
+   margin-top: 5px;
+   
+}
+#menu-zaivki .menu-item:first-child:before{
+     background-image: url('./inc/img/houseonrail.png');
+     content: "";
+     width: 30px;
+     height: 36px;
+     position: absolute;
+     left: 5px;
+     top: 0;
+     background-repeat: no-repeat;
+      background-position: center center;
+      background-size: contain;
+}
+
+#menu-zaivki .menu-item:last-child {
+    padding: 10px 5px 10px 45px; 
+     position: relative;
+   background-color: #fff;
+   border-radius: 5px;
+   border: 1px solid #d42019 !important;
+   margin-top: 5px;
+}
+
+#menu-zaivki .menu-item:last-child:before{
+     background-image: url('./inc/img/hosegive.png');
+     content: "";
+     width: 30px;
+     height: 36px;
+     position: absolute;
+     left: 5px;
+     top: 0;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: contain;
+}
+
+#sidebar #nav_menu-3 {
+        background-color: transparent;
+}
+
+.sidebar .widget .recent_posts_with_excerpts {
+    padding: 10px;
+}
+
+.recent_posts_with_excerpts h2 a{
+    color: #291670 !important;
+    font-size: 12px;
+    font-weight: bold;
+    
+}
+.sidebar .widget .recent_posts_with_excerpts h2 {
+    padding: 0px;
+    margin-bottom: 0px;
+}
+
+.sidebar .widget .recent_posts_with_excerpts  .date {
+    color: #0a77c5;
+    font-size: 12px;
+    margin-bottom: 0px;
+}
+
+.recent_posts_with_excerpts blockquote {
+    margin: 0px;
+}
+
+.greate {
+    margin-bottom: 5px !important;
+}
+.wpcf7 input {
+   border-color: #167dc4 !important; 
+}
+.wpcf7 textarea{
+    border-color: #167dc4 !important;
+    resize: vertical;
+}
+.wpcf7 .send input{
+    background: linear-gradient(to top, #0a78c6, #0192dd ) !important;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: normal;
+}
