@@ -54,12 +54,12 @@ body .header-v4 #header{
 }
 
 #wrapper .header-v4 #header .search-table {
-    width: 165px;
+    width: 226px;
 }
 
 .informzz {
     float: right;
-    width: 190px;
+    width: 240px;
     
 }
 
@@ -143,7 +143,7 @@ body .header-v4 #header{
 }
 
 .footermain {
-    max-width: 940px;
+    max-width: 1200px;
     width: 100%;
     color: #fff;
     min-height: 1px;
@@ -182,10 +182,10 @@ margin: 0;
 .navbarmain {
 position:absolute;
 width: 100%;
-padding-top: 192px;
+padding-top: 215px;
 }
 .menu-main-container{
-max-width: 940px;
+max-width: 1200px;
 margin: 0 auto;
 z-index: 250;
 }
@@ -249,7 +249,7 @@ line-height: 3.6;
 }
 
 #sidebar ,#sidebar-2 {
-        padding-top: 260px;
+        padding-top: 300px;
         list-style: none;
 }
 
@@ -277,7 +277,7 @@ line-height: 3.6;
     background-color: #038dd8;
     border-radius: 50%;
     position: absolute;
-    left: 15px;
+    left: 25px;
     top: 12px;
 }
 
@@ -288,18 +288,18 @@ line-height: 3.6;
     background-color: #038dd8;
     border-radius: 50%;
     position: absolute;
-    left: 15px;
+    left: 25px;
     top: 27px;
 }
 .sidebar .menu li {
-    padding: 5px 0px 2px 35px ;
+    padding: 5px 0px 2px 50px ;
     
 }
 .sidebar .menu li:last-child{
-    padding: 5px 0px 20px 35px ;
+    padding: 5px 0px 20px 50px ;
 }
 .sidebar .menu li:first-child{
-    padding: 20px 0px 2px 35px ;
+    padding: 20px 0px 2px 50px ;
 }
 .sidebar a{
     font-size: 12px;
@@ -308,11 +308,11 @@ line-height: 3.6;
   color: #d42019 !important;  
 }
 #sidebar .widgettitle {
-    max-width: 185px;
+    max-width: 235px;
     border-radius: 0px 5px 5px 0px;
 }
 #sidebar .widget{
-   max-width: 185px; 
+   max-width: 235px; 
    background-color: #fff;
     border-radius: 0px 5px 5px 0px;
 }
@@ -326,13 +326,13 @@ line-height: 3.6;
 }
 
 #menu-zaivki .menu-item:first-child a{
-    font-size: 13px;
+    font-size: 15px;
     text-transform: uppercase;
     color: #519353 !important;
 }
 
 #menu-zaivki .menu-item:last-child a{
-     font-size: 13px;
+     font-size: 15px;
     text-transform: uppercase;
     color: #d42019 !important;
 }
