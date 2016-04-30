@@ -14,7 +14,8 @@ body #wrapper {
 
 body .header-v4 #header {
     background-color: transparent;
-       border-bottom:  none;
+    border-bottom:  none;
+    padding-bottom: 10px; 
 }
 
 body #main {
@@ -45,16 +46,16 @@ html, body {
 .nav-holder{
     display: none;
 }
-body .header-v4 #header{
-    padding-top: 22px;
-}
+
 .header-v4 #header .search{
     margin: 0;
     clear: right;
+    width: 100%;
 }
 
 #wrapper .header-v4 #header .search-table {
-    width: 226px;
+    width: 100%;
+    padding: 0;
 }
 
 .informzz {
@@ -87,7 +88,16 @@ body .header-v4 #header{
 .header-banner input {
     font-size: 10px;
 }
-
+#header-banner{
+  float: left;
+  width: 80%;
+  display: block;
+}
+#header-slider{
+  margin: 0px 5%;
+  width: 65%;    
+  float: left;
+}
 .search-button1 {
     background-color: #fff;
     border: 0;
@@ -129,6 +139,7 @@ body .header-v4 #header{
 }
 
 #wrapper .search-field{
+    padding: 0;
     padding-top: 7px;
     width: 90%
 }
@@ -180,9 +191,9 @@ margin: 0;
     text-decoration: underline;
 }
 .navbarmain {
-position:absolute;
+// position:absolute;
 width: 100%;
-padding-top: 215px;
+// padding-top: 215px;
 }
 .menu-main-container{
 max-width: 1200px;
@@ -249,7 +260,7 @@ line-height: 3.6;
 }
 
 #sidebar ,#sidebar-2 {
-        padding-top: 300px;
+        padding: 0;
         list-style: none;
 }
 
@@ -426,3 +437,26 @@ line-height: 3.6;
     font-size: 16px;
     font-weight: normal;
 }
+.yith-wcan-select-wrapper{
+  opacity: 0;
+}
+
+/* ############################################################################### */
+/* МИША ЭТУ АХИНЕЮ УБЕРЕШЬ КОГДА ИСПРАВИШЬ position absolute где ты там его влепил */
+/* ############################################################################### */
+@media only screen and (min-width: 800px){
+  body .header-wrapper, .header-filler {
+      position: relative!important;
+      left: 0;
+      right: 0;
+      z-index: 10000;
+  }
+}
+body .header-wrapper, .header-filler {
+    position: relative!important;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+}
+/* ############################################################################### */
+/* ############################################################################### */

@@ -10,3 +10,10 @@ add_action('wp_enqueue_scripts', 'avada_child_scripts');
 
 require_once (get_stylesheet_directory() . "/corefunctions/functinscore.php");
 require_once (get_stylesheet_directory() . "/inc/post_types/init.php");
+
+function remove_loop_button(){
+	remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
+}
+add_action('init','remove_loop_button');
+
+add_shortcode("wc_get_attribute_taxonomies", 'wc_get_attribute_taxonomies');

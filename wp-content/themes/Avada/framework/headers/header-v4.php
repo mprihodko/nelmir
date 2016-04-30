@@ -123,7 +123,7 @@
 
 			<?php if($smof_data['header_v4_content'] == 'Banner'): ?>
 			<div id="header-banner">
-			<?php echo $smof_data['header_banner_code']; ?>
+			<?php echo do_shortcode($smof_data['header_banner_code']); ?>
 			</div>
 			<?php endif; ?>
 		</div>
