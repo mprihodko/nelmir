@@ -53,6 +53,14 @@ get_header( 'shop' ); ?>
 		 * @hooked woocommerce_get_sidebar - 10
 		 */
 		do_action( 'woocommerce_sidebar' );
+                
+                $content_css = 'float:left;';
+		$sidebar_css = 'float:left;';
 	?>
-
+        <div id="sidebar" class="sidebar" style="<?php echo $sidebar_css; ?>">
+		<?php dynamic_sidebar( 'sidebar_theme1' ); ?>
+	</div>
+        <div id="sidebar-2" class="sidebar" style="<?php echo $sidebar_2_css; ?>">
+		<?php dynamic_sidebar( 'sidebar_theme2');  ?>
+	</div>
 <?php get_footer( 'shop' ); ?>

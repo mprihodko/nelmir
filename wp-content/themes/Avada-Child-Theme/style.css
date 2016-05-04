@@ -441,9 +441,7 @@ line-height: 3.6;
   opacity: 0;
 }
 
-/* ############################################################################### */
-/* МИША ЭТУ АХИНЕЮ УБЕРЕШЬ КОГДА ИСПРАВИШЬ position absolute где ты там его влепил */
-/* ############################################################################### */
+
 @media only screen and (min-width: 800px){
   body .header-wrapper, .header-filler {
       position: relative!important;
@@ -458,5 +456,71 @@ body .header-wrapper, .header-filler {
     right: 0;
     z-index: 10000;
 }
-/* ############################################################################### */
-/* ############################################################################### */
+
+.yith-woo-ajax-navigation h2 {
+    display: none;
+}
+
+.yith-woo-ajax-navigation:first-child h2 {
+    display: block;
+}
+
+
+
+.sidebar .yith-woo-ajax-navigation {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    background-color: #fff;
+        padding-bottom: 10px;
+         border-radius: 0px !important;
+}
+#nav_menu-2 {
+    margin-top: 45px;
+}
+
+.yith-woo-ajax-navigation  a {
+    
+    margin: 0px auto;
+    max-width: 200px;
+    padding: 10px 5px;
+   
+}
+.yith-woo-ajax-navigation .yith-wcan-select-wrapper {
+    max-width: 200px;
+     
+         left: 17px;
+    right: 17px;
+   
+}
+
+.yith-woo-ajax-navigation:first-child  a {
+    margin-top: 10px;
+}
+
+.yith-woo-ajax-navigation:last-child  a {
+    margin-bottom:  10px;
+}
+
+.single-product .woocommerce-container {
+    width: 52%;
+    margin-left: 21%;
+    float: left;
+}
+
+.single-product #sidebar {
+    width: 21% !important;
+    margin-left: -73%;
+}
+
+.single-product  #sidebar-2 {
+    width: 21% !important;
+    margin-left: 3%;
+}
+
+.single-product #sidebar .widgettitle{
+        color: #fff;
+}
+
+.single-product #sidebar-2 .widgettitle{
+        color: #fff;
+}
