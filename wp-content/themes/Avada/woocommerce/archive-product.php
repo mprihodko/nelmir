@@ -1,4 +1,5 @@
-<?php
+<?php 
+ global $product;
 /**
  * The Template for displaying product archives, including the main shop page which is a post type archive
  *
@@ -30,7 +31,7 @@ get_header( 'shop' ); ?>
 		 */
 		do_action( 'woocommerce_before_main_content' );
 	?>
-
+                
 		<?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
 
 			<h1 class="page-title"><?php woocommerce_page_title(); ?></h1>
@@ -63,12 +64,42 @@ get_header( 'shop' ); ?>
 
 				<?php woocommerce_product_subcategories(); ?>
 
-				<?php while ( have_posts() ) : the_post(); ?>
-
-					<?php wc_get_template_part( 'content', 'product' ); ?>
-
+				<?php while ( have_posts() ) : the_post();?>
+                        <li class="product_list_item">
+                            <div class="lpart">
+                                <?php the_post_thumbnail( 'thumbnail'); ?>
+                            </div>
+                            <div class="rpart"><a href="<?php echo get_permalink(get_the_ID()); ?>"><h2><?php echo get_the_title(); ?></h2></a>
+                                <div class="nera">
+                                    <?php  $koostis = array_shift( wc_get_product_terms( get_the_ID(), 'pa_rayon' ) );
+                                   echo   $koostis; ?>
+                                </div>
+                                <div class="excerpt">
+                                      <?php echo get_the_excerpt( get_the_ID() ); ?>
+                                </div>
+                                <div class="lpart">
+                                    <div class="price">
+                                    <?php
+                                     $game = get_post_meta(get_the_ID());
+                                     foreach ($game as $key => $value) {
+                                         if ($key == '_price'){
+                                                echo $value[0]." руб.";
+                                         } 
+                                      
+                                     }
+                                      ?>
+                                </div>
+                                </div>
+                                <div class="rpart">
+                                    <a href="<?php echo get_permalink(get_the_ID()); ?>"><div class="morererad">Подробнее...</div></a>
+                                </div>
+                            </div>
+                                
+                                
+                                    <?php// wc_get_template_part( 'content', 'product' ); ?>
+                                 </li>
 				<?php endwhile; // end of the loop. ?>
-
+                       
 			<?php woocommerce_product_loop_end(); ?>
 
 			<?php
