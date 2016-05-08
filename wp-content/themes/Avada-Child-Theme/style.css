@@ -4,6 +4,8 @@ Description: Child theme for the Avada
 Author: Your name here
 Template: Avada
 */
+
+
 body .ui-widget-overlay{
 z-index: 999 !important;
 }
@@ -457,12 +459,17 @@ body .header-wrapper, .header-filler {
     z-index: 10000;
 }
 
-.yith-woo-ajax-navigation h2 {
+#yith-woo-ajax-navigation-2{
     display: none;
 }
-
-.yith-woo-ajax-navigation:first-child h2 {
+.yith-wcan-select-wrapper ul.yith-wcan-select.yith-wcan li a{
     display: block;
+    width: 100%;
+}
+body .yith-woocommerce-ajax-product-filter.yith-woo-ajax-navigation.woocommerce.widget_layered_nav
+ a.yit-wcan-select-open{
+    display: block!important;
+    width: 100%!important;
 }
 
 
@@ -478,28 +485,28 @@ body .header-wrapper, .header-filler {
     margin-top: 45px;
 }
 
-.yith-woo-ajax-navigation  a {
+// .yith-woo-ajax-navigation  a {
     
-    margin: 0px auto;
-    max-width: 200px;
-    padding: 10px 5px;
+//     margin: 0px auto;
+//     max-width: 200px;
+//     padding: 10px 5px;
    
-}
-.yith-woo-ajax-navigation .yith-wcan-select-wrapper {
-    max-width: 200px;
+// }
+// .yith-woo-ajax-navigation .yith-wcan-select-wrapper {
+//     max-width: 200px;
      
-         left: 17px;
-    right: 17px;
+//          left: 17px;
+//     right: 17px;
    
-}
+// }
 
-.yith-woo-ajax-navigation:first-child  a {
-    margin-top: 10px;
-}
+// .yith-woo-ajax-navigation:first-child  a {
+//     margin-top: 10px;
+// }
 
-.yith-woo-ajax-navigation:last-child  a {
-    margin-bottom:  10px;
-}
+// .yith-woo-ajax-navigation:last-child  a {
+//     margin-bottom:  10px;
+// }
 
 .single-product .woocommerce-container {
     width: 52%;
@@ -575,5 +582,82 @@ body .header-wrapper, .header-filler {
     float: right;
     margin-bottom: 5px;
      margin-top: 5px;
+}
+.widget_layered_nav,
+.widget_price_filter{
+  display: none;
+}
+.custom_filters_layout{
+  display: list-item;
+}
+#buyBtn:before{
+  background-image: url('./inc/img/houseonrail.png');
+  content: "";
+  width: 30px;
+  height: 36px;
+  position: absolute;
+  left: 5px;
+  top: 0;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}
+#buyBtn{
+  padding: 10px 5px 10px 45px;
+  position: relative;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #519353 !important;
+  margin-top: 5px;
+  width: 100%;
+  text-transform: uppercase;
+  color: #519353;
+  font-weight: bold;
+  box-shadow: 0 0 0px rgba(0,0,0,0.5);
+  -webkit-transition: box-shadow 0.3s ease-out 0.1s;
+  -moz-transition: box-shadow 0.3s ease-out 0.1s;
+  -o-transition: box-shadow 0.3s ease-out 0.1s;
+  transition: box-shadow 0.3s ease-out 0.1s;
+}
+#saleBtn:before{
+  background-image: url('./inc/img/hosegive.png');
+  content: "";
+  width: 30px;
+  height: 36px;
+  position: absolute;
+  left: 5px;
+  top: 0;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}
+#saleBtn{
+  padding: 10px 5px 10px 45px;
+  position: relative;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #d42019 !important;
+  margin-top: 5px;
+  width: 100%;
+  text-transform: uppercase;
+  color: #d42019;
+  font-weight: bold;
+  box-shadow: 0 0 0px rgba(0,0,0,0.5);
+  -webkit-transition: box-shadow 0.3s ease-out 0.1s;
+  -moz-transition: box-shadow 0.3s ease-out 0.1s;
+  -o-transition: box-shadow 0.3s ease-out 0.1s;
+  transition: box-shadow 0.3s ease-out 0.1s;
+}
+#buyBtn:hover,
+#saleBtn:hover{
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  -webkit-transition: box-shadow 0.3s ease-out 0.1s;
+  -moz-transition: box-shadow 0.3s ease-out 0.1s;
+  -o-transition: box-shadow 0.3s ease-out 0.1s;
+  transition: box-shadow 0.3s ease-out 0.1s;
+}
+#sidebar .widget.widget_text{
+  background: transparent;
 }
 
