@@ -269,7 +269,7 @@ line-height: 3.6;
 .widgettitle {
         background: linear-gradient(to top, #1b4095, #0192dd);
         list-style: none;
-        color: #fff;
+        color: #fff !important;
         padding: 10px 10px;
         border-radius: 5px 0px 0px 5px;
         font-size: 12px !important;
@@ -660,4 +660,157 @@ body .yith-woocommerce-ajax-product-filter.yith-woo-ajax-navigation.woocommerce.
 #sidebar .widget.widget_text{
   background: transparent;
 }
+.ploshad {
+        padding-left: 32px;
+    margin-top: 10px;
+    background-image: url('./inc/img/lrt.png');
+    background-position: 4% 50%;
+    background-repeat: no-repeat;
+}
 
+.widget_top_rated_products .product_list_widget .wp-post-image {
+        float: left;
+    width: 100%;
+    max-width: 100%;
+    padding: 0px 10px;
+    margin-left: 0px;
+}
+
+.widget_top_rated_products .product_list_widget .product-title {
+    width: 100%;
+    padding: 0 10px;
+    display: block;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 5px;
+    float: left;
+}
+
+.widget_top_rated_products .product_list_widget .amount {
+    width: 100%;
+    padding: 0 10px;
+    display: block;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 5px;
+    float: left;
+    color: #174ea1;
+    font-weight: normal;
+    text-decoration: none;
+    text-transform: none;
+}
+
+.widget_products .product_list_widget .wp-post-image {
+        float: left;
+    width: 100%;
+    max-width: 100%;
+    padding: 0px 10px;
+    margin-left: 0px;
+}
+
+.widget_products .product_list_widget .product-title {
+    width: 100%;
+    padding: 0 10px;
+    display: block;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 5px;
+    float: left;
+}
+
+.widget_products .product_list_widget .amount {
+    width: 100%;
+    padding: 0 10px;
+    display: block;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 5px;
+    float: left;
+    color: #174ea1;
+    font-weight: normal;
+    text-decoration: none;
+    text-transform: none;
+}
+
+
+#yith-woo-ajax-navigation li{
+      width: 80%;
+    margin: 0 auto;
+  border-color: #8f8f8f;
+    background-color: #f5f4f2;
+}
+
+#yith-woo-ajax-navigation li li {
+    background-color: #fff;
+    border-color: #fff;
+}
+#yith-woo-ajax-navigation li a{
+    background: transparent url('./inc/img/strhg.png') top 50% right 3% no-repeat;
+}
+
+#yith-woo-ajax-navigation li li a{
+    background: none;
+}
+
+.price_slider_wrapper .price_slider_amount{
+  float: none;
+  width: 100%;
+  padding: 0px 10%;
+  text-align: left;
+}
+
+.price_slider_wrapper .price_slider_amount input{
+    margin: 5px auto;
+    width: 100%;
+    line-height: 20px;
+}
+
+.price_slider_wrapper .price_slider_amount button{
+        margin: 10px auto;
+    width: 80%;
+}
+
+.orderby-order-container {
+    padding-left: 100px;
+    position: relative;
+}
+
+.orderby-order-container:before{
+    content: "Сортировать по:";
+    position: absolute;
+    left: 0px;
+    top: 20%;
+        
+}
+
+.home .fusion-one-fifth {
+    margin-right: 5px;
+    width: 20%;
+}
+
+.home .fusion-one-fifth .fusion-imageframe {
+    width: 100%;
+}
+.home .fusion-four-fifth h2{
+    text-transform: uppercase;
+    width: 100%;
+    margin-top: 24px;
+    font-size: 20px;
+    padding: 15px 0px;
+    position: relative;
+    padding-left: 40px;
+    left: -40px;
+    background: linear-gradient(to right, #fff, #aad6f8);
+}
+
+.home .fusion-four-fifth .wp-caption img{
+   background-color: #fff;
+   padding: 5px;
+   border: 1px solid #0a77c5;
+   margin-bottom: 10px;
+   border-radius: 5px;
+}
+
+.home .fusion-four-fifth .wp-caption{
+    text-align: center;
+}

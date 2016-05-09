@@ -68,6 +68,11 @@ get_header( 'shop' ); ?>
                         <li class="product_list_item">
                             <div class="lpart">
                                 <?php the_post_thumbnail( 'thumbnail'); ?>
+                                <div class="ploshad">
+                                     
+                                    <?php  $koostis = array_shift( wc_get_product_terms( get_the_ID(), 'pa_ploshhad' ) );
+                                   echo   $koostis." м2"; ?>
+                                </div>
                             </div>
                             <div class="rpart"><a href="<?php echo get_permalink(get_the_ID()); ?>"><h2><?php echo get_the_title(); ?></h2></a>
                                 <div class="nera">
