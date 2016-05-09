@@ -21,3 +21,26 @@
     width: 100%;
     margin: 10px 0;
 }
+body.woocommerce .thumbnails .owl-nav .owl-prev,
+body.woocommerce .thumbnails .owl-nav .owl-next{
+	background: rgb(179, 179, 179)!important;
+    color: #fff!important;
+    padding: 2px 5px!important;
+    top: 0!important;
+    position: absolute;
+    margin: 0px !important;
+    font-size: 20px;
+    height: 100px;
+}
+.woocommerce .thumbnails .owl-nav .owl-prev:hover,
+.woocommerce .thumbnails .owl-nav .owl-next:hover{
+	background: rgb(3, 141, 217)!important;
+}
+.woocommerce .thumbnails .owl-nav .owl-prev i,
+.woocommerce .thumbnails .owl-nav .owl-next i{
+	position: relative;
+    top: 40%;
+}
+#content .owl-carousel .owl-item img{
+	height: 100px;
+}

@@ -11,6 +11,9 @@ jQuery(document).ready(function($){
 				$(".select_filter_param").on("click", function(){					 
 					$(this).parents().eq(2).prev().text($(this).html());
 					$(this).parents().eq(2).css("visibility", "hidden").css("position", "absolute");
+					$("#content").css("opacity", 0);
+					setTimeout(function(){window.location=window.location.href}, 500);
+					// console.log('window.location.href ' , window.location.href);
 				})
 			},
 			openList:function(){

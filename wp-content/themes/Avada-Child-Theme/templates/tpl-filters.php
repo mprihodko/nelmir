@@ -16,10 +16,23 @@
 
 			<?php foreach ($attribute_data as $attr): ?>
 				<?php $taxonomy=str_replace("pa_", "", $attr->taxonomy); ?>
-				<li>
+				<li>					
+					<?php 
+						$url="";
+						if($_SERVER['QUERY_STRING']==""){
+							$url.="/?";
+						}elseif($_SERVER['QUERY_STRING']!="" && !isset($_GET['filter_'.$taxonomy])){
+							$url.="/?".$_SERVER['QUERY_STRING']."&";
+							$url.='filter_'.$taxonomy.'='.$attr->term_id;
+						}elseif($_SERVER['QUERY_STRING']!="" && isset($_GET['filter_'.$taxonomy])){
+							$url.="/?".str_replace(	"filter_".$taxonomy."=".$_GET['filter_'.$taxonomy],
+												"filter_".$taxonomy."=".$attr->term_id,
+												$_SERVER['QUERY_STRING']);
+						}
+					?>
 					<a 	data-type="select"
 						class="select_filter_param" 
-						href="<?=home_url('shop')?><?=isset($_GET) && !isset($_GET['filter_'.$taxonomy]) ? "/?".$_SERVER['QUERY_STRING']."&" : "?" ?>filter_<?=$taxonomy?>=<?=$attr->term_id?>">
+						href="<?=home_url('shop').$url?>">
 						<?=$attr->name ?>
 					</a>
 				</li>
