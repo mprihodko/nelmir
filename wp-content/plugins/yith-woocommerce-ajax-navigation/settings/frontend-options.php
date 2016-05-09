@@ -9,7 +9,7 @@ $frontend = array(
             array( 'type' => 'open' ),
 
             array(
-                'name' => __( 'General Settings', 'yith-woocommerce-ajax-navigation' ),
+                'name' => __( 'Frontend Settings', 'yith-woocommerce-ajax-navigation' ),
                 'type' => 'title'
             ),
 

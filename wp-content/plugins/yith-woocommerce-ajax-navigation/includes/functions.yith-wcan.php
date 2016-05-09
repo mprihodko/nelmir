@@ -474,8 +474,13 @@ if ( ! function_exists( 'yit_get_woocommerce_layered_nav_link' ) ) {
      */
     function yit_get_woocommerce_layered_nav_link() {
         $return = false;
-        if ( defined( 'SHOP_IS_ON_FRONT' ) || ( is_shop() && ! is_product_category() && ! is_product_taxonomy() ) ) {
-            $return = get_post_type_archive_link( 'product' );
+        if ( defined( 'SHOP_IS_ON_FRONT' ) || ( is_shop() && ! is_product_category()  ) ) {
+            $taxonomy           = get_query_var( 'taxonomy' );
+            $brands_taxonomy    = yit_get_brands_taxonomy();
+            $return             = get_post_type_archive_link( 'product' );
+            if( ! empty( $brands_taxonomy ) && $brands_taxonomy == $taxonomy ){
+                $return = add_query_arg( array( $taxonomy => get_query_var( 'term' ) ), $return );
+            }
             return apply_filters( 'yith_wcan_untrailingslashit', true ) ? untrailingslashit( $return ) : $return;
         }
 
@@ -489,7 +494,7 @@ if ( ! function_exists( 'yit_get_woocommerce_layered_nav_link' ) ) {
             $brands_taxonomy    = yit_get_brands_taxonomy();
 
             if( ! empty( $brands_taxonomy ) && $brands_taxonomy == $taxonomy ){
-                $return = get_post_type_archive_link( 'product' );
+                $return = add_query_arg( array( $taxonomy => get_query_var( 'term' ) ), get_post_type_archive_link( 'product' ) );
             }
 
             else {
@@ -570,29 +575,91 @@ if( ! function_exists( 'yit_get_brands_taxonomy' ) ){
      * @author   Andrea Grillo <andrea.grillo@yithemes.com>
      */
     function yit_get_brands_taxonomy(){
-            return defined( 'YITH_WCBR_PREMIUM_INIT' ) && YITH_WCBR_PREMIUM_INIT ? YITH_WCBR::$brands_taxonomy : '';
+        $taxonomy = '';
+
+        //Support to YITH WooCommerce Brands Add-on
+        if( defined( 'YITH_WCBR_PREMIUM_INIT' ) && YITH_WCBR_PREMIUM_INIT ){
+            $taxonomy = YITH_WCBR::$brands_taxonomy;
+        }
+
+        //Support to Ultimate WooCommerce Brands PRO
+        elseif( class_exists( 'MGWB' ) ){
+            $taxonomy = "product_brand";
+        }
+        return $taxonomy;
     }
 }
 
-function yit_test( $parent_term_id ){
-    $childs = get_terms(
-        'product_cat',
-        array(
-            'parent'       => $parent_term_id,
-            'hierarchical' => true,
-            'hide_empty'   => false
-        )
-    );
+if( ! function_exists( 'yit_reorder_hierachical_categories' ) ) {
+    /**
+     * Enable multi level taxonomies management
+     *
+     * @return array the full terms array
+     *
+     * @since    2.8.1
+     * @author   Andrea Grillo <andrea.grillo@yithemes.com>
+     */
+    function yit_reorder_hierachical_categories( $parent_term_id, $taxonomy = 'product_cat' ) {
+        $childs = get_terms(
+            $taxonomy,
+            array(
+                'parent'       => $parent_term_id,
+                'hierarchical' => true,
+                'hide_empty'   => false
+            )
+        );
 
-    if( ! empty( $childs ) ){
-        $temp  = array();
-        foreach( $childs as $child ){
-            $temp[ $child->term_id ] = yit_test( $child->term_id );
+        if ( !empty( $childs ) ) {
+            $temp = array();
+            foreach ( $childs as $child ) {
+                $temp[$child->term_id] = yit_reorder_hierachical_categories( $child->term_id, $taxonomy );
+            }
+            return $temp;
         }
-        return $temp;
+
+        else {
+            return array();
+        }
+    }
+}
+
+if( ! function_exists( 'remove_premium_query_arg' ) ) {
+    /**
+     * Remove Premium query args
+     *
+     * @return array the full terms array
+     *
+     * @since    2.8.1
+     * @author   Andrea Grillo <andrea.grillo@yithemes.com>
+     */
+    function remove_premium_query_arg( $link ) {
+        $reset           = array( 'orderby', 'onsale_filter', 'instock_filter', 'product_tag', 'product_cat' );
+        $brands_taxonomy = yit_get_brands_taxonomy();
+        if ( ! empty( $brands_taxonomy ) ) {
+            $reset[] = $brands_taxonomy;
+        }
+
+        return remove_query_arg( $reset, $link );
+    }
+}
+
+if( ! function_exists( 'yit_is_filtered_uri' ) ){
+    /**
+     * Get is the current uri are filtered
+     *
+     * @return bool true if the url are filtered, false otherwise
+     *
+     * @since    2.8.6
+     * @author   Andrea Grillo <andrea.grillo@yithemes.com>
+     */
+    function yit_is_filtered_uri(){
+        global $_chosen_attributes;
+        $brands = yit_get_brands_taxonomy();
+        $show_all_categories_link_enabled = 'yes' == yith_wcan_get_option( 'yith_wcan_enable_see_all_categories_link', 'no' );
+        //check if current page is filtered
+        $is_filtered_uri = isset( $_GET['product_cat'] ) || count( $_chosen_attributes ) > 0 || isset( $_GET['min_price'] ) || isset( $_GET['max_price'] ) || isset( $_GET['orderby'] ) || isset( $_GET['instock_filter'] ) || isset( $_GET['onsale_filter'] ) || isset( $_GET['product_tag'] ) || isset( $_GET[ $brands ] );
+
+        return apply_filters( 'yit_wcan_is_filtered_uri', $is_filtered_uri );
     }
 
-    else{
-        return array();
-    }
 }

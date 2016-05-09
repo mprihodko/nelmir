@@ -1,0 +1,23 @@
+#content .product .summary.entry-summary{
+	display: block;
+    width: 100%;
+    margin: 0;
+}
+#content .product .summary.entry-summary .product_meta{
+	padding: 0;
+} 
+#content .product .summary.entry-summary .product-border{
+	display: none;
+}
+#content .woocommerce-main-image.zoom,
+#content .woocommerce-main-image.zoom img,
+#content .product .images{
+	float: left;
+	display: block;
+	width: 100%;
+}
+#content .product .thumbnails.columns-3{
+	float: left;
+    width: 100%;
+    margin: 10px 0;
+}

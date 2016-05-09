@@ -3,8 +3,8 @@
 Contributors: yithemes
 Tags: woocommerce ajax product filter download, woocommerce, widget, ajax, ajax filtered nav, ajax navigation, ajax filtered navigation, woocommerce layered navigation, woocommerce layered nav, product filter, product filters, ajax product filter, woocommerce ajax product filter, woocommerce filters, sidebar filter, sidebar ajax filter, ajax price filter, price filter, product sorting, woocommerce filter, taxonomy filter, attribute filter, attributes filter, woocommerce product sort, ajax sort, woocommerce ajax product filter, advanced product filters, ajax product filters, filters, woocommerce ajax product filters, woocommerce product filters, woocommerce product filters, category filter, attribute filters, woocommerce products filter, woocommerce price filter, yit, yith, yithemes
 Requires at least: 4.0
-Tested up to: 4.4.2
-Stable tag: 2.8.1
+Tested up to: 4.5.1
+Stable tag: 2.9.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -159,7 +159,19 @@ If you want to see a demonstration version of the premium plugin, you can see it
 
 == Changelog ==
 
-= 2.8.1 =
+= 2.9.1 - Released: May 04, 2016 =
+
+* Fixed: $class variable are not defined
+* Fixed: Filter by list-attribute doesn't works in versio 2.9.0
+
+= 2.9.0 - Released: May 02, 2016 =
+
+* Fixed: Filtering issue with YITH WooCommerce Brands Add-on Premium
+* Fixed: HTML5 Validation (attribute name not allowed in ul element)
+* Fixed: z-index not set to -1 when user close dropdown filters with click in page area
+
+
+= 2.8.1 - Released: Mar 10, 2016 =
 
 * Fixed: Dropdown issue with Remy Theme
 * Fixed: $.fn.slider is not a function after click on reset filter

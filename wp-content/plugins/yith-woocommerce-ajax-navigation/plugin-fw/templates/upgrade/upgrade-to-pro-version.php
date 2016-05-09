@@ -1,42 +1,75 @@
-<style>
-    #upgrade-to-premium h1{text-transform: uppercase; }
-</style>
 <div id="upgrade-to-premium">
     <h1><?php _e( 'Upgrade to Premium Version', 'yith-plugin-fw' ) ?></h1>
-    <h3><?php _e( "Hai comprato la versione premium di un plugin ? Dopo l'acquisto non trovi dove attivare la licenza del tuo plugin premium ?", 'yith-plugin-fw' ) ?></h3>
+    <h3><?php _e( "Have you purchased the premium version of a plugin? Don't you know how to activate the license after the purchase?", 'yith-plugin-fw' ) ?></h3>
     <p class="upgrade-how-to">
-        <?php _e( "Per passare da un plugin FREE ad uno PREMIUM non basta semplicemnete inserire la chiave di licenza che ti è stata fornita dopo aver completato l'acquisto.
-        Questo perchè fisicamente si tratta di due prodotti diversi, con differenze sostanziali sia nelle opzioni disponibili sia sul numero di file presenti all'interno del pacchetto del plugin stesso.
-        Per iniziare ad usare il plugin PREMIUM che hai appena acquistato devi semplicemente scaricare il pacchetto PREMIUM ed installarlo sul tuo sito.", 'yith-plugin-fw' ); ?>
+        <?php echo _e( "To upgrade from a FREE to a PREMIUM plugin is not suffice to insert the license key provided after the purchase.
+        The reason is that they are two distinct products, with significant differences both for available options and for number of files included in the plugin package.
+        To start to use the PREMIUM version of the plugin, you simply need to download the PREMIUM packet and install it on your site.", 'yith-plugin-fw' ); ?>
     </p>
-    <p><?php _e( 'Non sai come fare ? Non è un problema, segui i passi elencati qui sotto ed in pochi minuti avrai il plugin acquistato correttamente installato sul tuo sito.', 'yith-plugin-fw' ) ?></p>
-    <ul class="upgrade-steps">
+    <p class="highlighted"><?php echo sprintf( __( '%1$sDo you need to know how to do it?%2$s Easy! %1$sFollow this list of steps%2$s and in a few minutes the plugin you purchased will be installed on your site', 'yith-plugin-fw' ),'<b>','</b>' ); ?></p>
+    <ol class="upgrade-steps">
         <li class="step">
-            1. <?php _e( 'Vai su yithemes.com ed effettua il login alla sezione My Account ', 'yith-plugin-fw' ); ?>
+             <?php _e( 'Go to yithemes.com and login to "My Account" page', 'yith-plugin-fw' ); ?>
+            <a class="image-lightbox" href="<?php echo $core_plugin_url; ?>/assets/images/upgrade-page/01.jpg" title="YIThemes - Login">
+                <img class="img-responsive" src="<?php echo $core_plugin_url; ?>/assets/images/upgrade-page/01.jpg" alt="YIThemes - Login">
+            </a>
         </li>
         <li class="step">
-            2. <?php _e( 'Dal menù di sinistra clicca su "My Downloads" e cerca tra i download disponibili il plugin che vuoi installare, e clicca su "Download"', 'yith-plugin-fw' ); ?>
+             <?php _e( 'From the menu on the left, click on "My Downloads", look for the plugin you want to install among the available downloads and click on "Download" button' , 'yith-plugin-fw' ); ?>
+            <a class="image-lightbox" href="<?php echo $core_plugin_url; ?>/assets/images/upgrade-page/02.jpg" title="My Account -> My Downloads">
+                <img class="img-responsive" src="<?php echo $core_plugin_url; ?>/assets/images/upgrade-page/02.jpg" alt="My Account -> My Downloads">
+            </a>
         </li>
         <li class="step">
-            3. <?php _e( "Non appena il download del pacchetto sarà completato recati sul tuo sito web ed effettua il login all'area amministrazione di WordPress.", 'yith-plugin-fw' ); ?>
+             <?php _e( "After downloading the packet, go to your website and login to WordPress administration area.", 'yith-plugin-fw' ); ?>
+            <a class="image-lightbox" href="<?php echo $core_plugin_url; ?>/assets/images/upgrade-page/03.jpg" title="Login to WordPress">
+                <img class="img-responsive" src="<?php echo $core_plugin_url; ?>/assets/images/upgrade-page/03.jpg" alt="Login to WordPress">
+            </a>
         </li>
         <li class="step">
-            4. <?php _e( 'Dal menù di sinistra clicca sulla voce Plugins. Verrai indirizzato su una pagina con la lista dei plugin disponibili sul tuo sito. Clicca sul pulsante "Add New" che trovi in alto a sinistra vicino al titolo della pagina.', 'yith-plugin-fw' ); ?>
+             <?php _e( 'From the menu on the left, click on "Plugins". You will be redirected to the page where you will find the complete list of all the plugins available on your site. Click on "Add New" button that you find above on the left to add a new plugin', 'yith-plugin-fw' ); ?>
+            <a class="image-lightbox" href="<?php echo $core_plugin_url; ?>/assets/images/upgrade-page/04.jpg" title="Add new plugin">
+                <img class="img-responsive" src="<?php echo $core_plugin_url; ?>/assets/images/upgrade-page/04.jpg" alt="Add new plugin">
+            </a>
         </li>
         <li class="step">
-            5. <?php _e( 'Verrai indirizzato su una nuova pagina dove trovi, in alto a sinistra vicino al titolo della pagina, il pulsante "Upload Plugin".', 'yith-plugin-fw' ); ?>
+             <?php _e( 'You will be redirected to a new page where you will find, above on the left next to the page title, the "Upload Plugin" button.', 'yith-plugin-fw' ); ?>
+            <a class="image-lightbox" href="<?php echo $core_plugin_url; ?>/assets/images/upgrade-page/05.jpg" title="Upload plugin">
+                <img class="img-responsive" src="<?php echo $core_plugin_url; ?>/assets/images/upgrade-page/05.jpg" alt="Upload plugin">
+            </a>
         </li>
         <li class="step">
-            6. <?php _e( 'Cliccando su "Upload Plugins", ti troverai in una pagina dove poter effettuare l\'upload del pacchetto del plugin PREMIUM da te precedentemente scaricato. Clicca quindi su "Scegli File", cerca la cartella di download dove hai scaricato il plugin ed effettua il caricamneto del pacchetto. A questo punto ti basta attendere qualche minuto che il pacchetto venga caricato ed installato sul tuo sito.', 'yith-plugin-fw' ); ?>
+             <?php _e( 'Click on "Upload Plugins" button to start the upload of the PREMIUM version of the plugin previously downloaded. Click on "Select File", search for the download folder related to the plugin and upload the package. Now you only need to wait a few minutes for the upload and the installation on your site. (We used YITH Live Chat plugin by way of example)', 'yith-plugin-fw' ); ?>
+            <a class="image-lightbox" href="<?php echo $core_plugin_url; ?>/assets/images/upgrade-page/06.jpg" title="Select plugin package">
+                <img class="img-responsive" src="<?php echo $core_plugin_url; ?>/assets/images/upgrade-page/06.jpg" alt="Select plugin package">
+            </a>
         </li>
         <li class="step">
-            7. <?php _e( 'Al termine della procedura di installazione clicca su "Attiva"', 'yith-plugin-fw' ); ?>
+             <?php _e( 'After completing the installation, click on "Activate plugin"', 'yith-plugin-fw' ); ?>
+            <a class="image-lightbox" href="<?php echo $core_plugin_url; ?>/assets/images/upgrade-page/07.jpg" title="Activate plugin">
+                <img class="img-responsive" src="<?php echo $core_plugin_url; ?>/assets/images/upgrade-page/07.jpg" alt="Activate plugin">
+            </a>
+            <?php _e( 'If everything worked allright, your plugin is now correctly installed on your website. Enjoy it :-)', 'yith-plugin-fw' ); ?>
         </li>
         <li class="step">
-            8. <?php _e( 'Se tutto è andato per il meglio il tuo plugin è correttamente installato sul tuo sito web. Enjoy it :-)', 'yith-plugin-fw' ); ?>
+             <?php _e( 'The last step is the activation of the plugin through its license key you received after the purchase. Click on "License Activation" that you find in "YITH Plugins" and insert the license key and the email address you used during the purchase.', 'yith-plugin-fw' ); ?>
+            <a class="image-lightbox" href="<?php echo $core_plugin_url; ?>/assets/images/upgrade-page/08.jpg" title="Activate license">
+                <img class="img-responsive" src="<?php echo $core_plugin_url; ?>/assets/images/upgrade-page/08.jpg" alt="Activate license">
+            </a>
         </li>
         <li class="step">
-            9. <?php _e( 'Ultimo step è attivare il plugin con la chiave di licenza che hai ricevuto dopo l\'acquisto. Clicca quindi sul link "License Activation" che trovi sotto "YITH Plugins" ed inserisci la license key in tuo possesso ed email utilizzata in fase di acquisto. Se non trovi l\'email che ti abbiamo inviato contenete la license key puoi facilmente recuperarla dalla sezione "My Licenses" all\'interno della sezione My Account del nostro sito yithemes.com.', 'yith-plugin-fw' ); ?>
+            <?php _e( 'In case you had difficulty to recover the license key we sent you by email, you can easily find it in "My Licenses" section of your account on yithemes.com', 'yith-plugin-fw' ); ?>
+            <a class="image-lightbox" href="<?php echo $core_plugin_url; ?>/assets/images/upgrade-page/09.jpg" title="Section My License">
+                <img class="img-responsive" src="<?php echo $core_plugin_url; ?>/assets/images/upgrade-page/09.jpg" alt="Section My License">
+            </a>
         </li>
-    </ul>
+    </ol>
 </div>
+
+<script>
+    // Lightbox image
+    jQuery('document').ready(function($){
+        $(".image-lightbox").colorbox({rel:'image-lightbox'});
+    });
+
+</script>

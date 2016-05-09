@@ -37,16 +37,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-	<?php
-		/**
-		 * woocommerce_before_single_product_summary hook.
-		 *
-		 * @hooked woocommerce_show_product_sale_flash - 10
-		 * @hooked woocommerce_show_product_images - 20
-		 */
-		do_action( 'woocommerce_before_single_product_summary' );
-	?>
-
 	<div class="summary entry-summary">
 
 		<?php
@@ -65,6 +55,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 		?>
 
 	</div><!-- .summary -->
+	<?php
+		/**
+		 * woocommerce_before_single_product_summary hook.
+		 *
+		 * @hooked woocommerce_show_product_sale_flash - 10
+		 * @hooked woocommerce_show_product_images - 20
+		 */
+		do_action( 'woocommerce_before_single_product_summary' );
+	?>
+
 
 	<?php
 		/**
@@ -75,6 +75,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 * @hooked woocommerce_output_related_products - 20
 		 */
 		do_action( 'woocommerce_after_single_product_summary' );
+		$address=get_post_meta(get_the_ID(), 'gmap_address', true);
+		if($address){
+		echo do_shortcode( '[map address="'.$address.'" type="roadmap" map_style="default" overlay_color="" infobox="default" infobox_background_color="" infobox_text_color="" infobox_content="" icon="" width="100%" height="300px" zoom="14" scrollwheel="yes" scale="yes" zoom_pancontrol="yes" popup="yes" class="" id=""][/map]' );
+	}
 	?>
 
 	<meta itemprop="url" content="<?php the_permalink(); ?>" />

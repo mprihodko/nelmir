@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YITH Plugin Starter 1.0.0 Plugin FW\n"
 "Report-Msgid-Bugs-To: Your Inspiration Themes <plugins@yithemes.com>\n"
-"POT-Creation-Date: 2016-03-07 15:11+0100\n"
-"PO-Revision-Date: 2016-03-07 15:11+0100\n"
+"POT-Creation-Date: 2016-03-18 15:29+0100\n"
+"PO-Revision-Date: 2016-03-18 15:34+0100\n"
 "Last-Translator: \n"
 "Language-Team: YIThemes <plugins@yithemes.com>\n"
 "Language: it_IT\n"
@@ -224,7 +224,7 @@ msgstr "Aggiungi %s dalla immagini"
 msgid "Upload multiple files"
 msgstr ""
 
-#: lib/yit-plugin-panel-wc.php:341
+#: lib/yit-plugin-panel-wc.php:345
 msgid "The changes you have made will be lost if you leave this page."
 msgstr "Perderai tutti i cambiamenti effettuati se lasci questa pagina."
 
@@ -236,63 +236,67 @@ msgstr "Impostazioni plugin"
 msgid "YITH Plugins"
 msgstr "YITH Plugins"
 
-#: lib/yit-plugin-panel.php:297 lib/yit-plugin-subpanel.php:146
+#: lib/yit-plugin-panel.php:276
+msgid "Premium version upgrade"
+msgstr ""
+
+#: lib/yit-plugin-panel.php:322 lib/yit-plugin-subpanel.php:146
 #: templates/panel/woocommerce/woocommerce-form.php:5
 msgid "Save Changes"
 msgstr "Salva modifiche"
 
-#: lib/yit-plugin-panel.php:300 templates/panel/woocommerce/woocommerce-form.php:8
+#: lib/yit-plugin-panel.php:325 templates/panel/woocommerce/woocommerce-form.php:8
 msgid "If you continue with this action, you will reset all options in this page."
 msgstr ""
 "Se prosegui con questa azione, tutte le opzioni di questa pagina saranno "
 "reimpostate."
 
-#: lib/yit-plugin-panel.php:302 lib/yit-plugin-subpanel.php:151
+#: lib/yit-plugin-panel.php:327 lib/yit-plugin-subpanel.php:151
 msgid "Reset to default"
 msgstr ""
 
-#: lib/yit-plugin-panel.php:302 lib/yit-plugin-subpanel.php:151
+#: lib/yit-plugin-panel.php:327 lib/yit-plugin-subpanel.php:151
 #: templates/panel/woocommerce/woocommerce-form.php:11
 msgid "Are you sure?"
 msgstr "Sei sicuro?"
 
-#: lib/yit-plugin-panel.php:436
+#: lib/yit-plugin-panel.php:461
 msgid "The element you have entered already exists. Please, enter another name."
 msgstr "L'elemento inserito esiste già. Per favore, inserisci un altro nome."
 
-#: lib/yit-plugin-panel.php:437
+#: lib/yit-plugin-panel.php:462
 msgid "Settings saved"
 msgstr "Impostazioni salvate"
 
-#: lib/yit-plugin-panel.php:438
+#: lib/yit-plugin-panel.php:463
 msgid "Settings reset"
 msgstr "Impostazioni azzerate"
 
-#: lib/yit-plugin-panel.php:439
+#: lib/yit-plugin-panel.php:464
 msgid "Element deleted correctly."
 msgstr "Elemento rimosso correttamente."
 
-#: lib/yit-plugin-panel.php:440 lib/yit-plugin-panel.php:441
+#: lib/yit-plugin-panel.php:465 lib/yit-plugin-panel.php:466
 msgid "Element updated correctly."
 msgstr "Elemento aggiornato correttamente."
 
-#: lib/yit-plugin-panel.php:442
+#: lib/yit-plugin-panel.php:467
 msgid "Database imported correctly."
 msgstr "Database importato correttamente."
 
-#: lib/yit-plugin-panel.php:443
+#: lib/yit-plugin-panel.php:468
 msgid "An error has occurred during import. Please try again."
 msgstr "Si è verificato un errore durante l'importazione. Prova di nuovo."
 
-#: lib/yit-plugin-panel.php:444
+#: lib/yit-plugin-panel.php:469
 msgid "The added file is not valid."
 msgstr "Il file aggiunto non è valido."
 
-#: lib/yit-plugin-panel.php:445
+#: lib/yit-plugin-panel.php:470
 msgid "Sorry, import is disabled."
 msgstr "Ci dispiace, l'importazione è disabilitata."
 
-#: lib/yit-plugin-panel.php:446
+#: lib/yit-plugin-panel.php:471
 msgid "Sorting successful."
 msgstr "Ordinamento effettuato con successo."
 
@@ -1006,6 +1010,132 @@ msgstr ""
 #: templates/panel/woocommerce/woocommerce-form.php:11
 msgid "Reset Defaults"
 msgstr "Ripristina impostazioni iniziali"
+
+#: templates/upgrade/upgrade-to-pro-version.php:2
+msgid "Upgrade to Premium Version"
+msgstr ""
+
+#: templates/upgrade/upgrade-to-pro-version.php:3
+msgid ""
+"Have you purchased the premium version of a plugin? Don't you know how to activate "
+"the license after the purchase?"
+msgstr ""
+"Hai comprato la versione premium di un plugin ? Dopo l'acquisto non trovi dove "
+"attivare la licenza del tuo plugin premium ? "
+
+#: templates/upgrade/upgrade-to-pro-version.php:5
+msgid ""
+"To upgrade from a FREE to a PREMIUM plugin is not suffice to insert the license "
+"key provided after the purchase.\n"
+"        The reason is that they are two distinct products, with significant "
+"differences both for available options and for number of files included in the "
+"plugin package.\n"
+"        To start to use the PREMIUM version of the plugin, you simply need to "
+"download the PREMIUM packet and install it on your site."
+msgstr ""
+"Per passare da un plugin FREE ad uno PREMIUM non basta semplicemnete inserire la "
+"chiave di licenza che ti è stata fornita dopo aver completato l'acquisto. Questo "
+"perchè fisicamente si tratta di due prodotti diversi, con differenze sostanziali "
+"sia nelle opzioni disponibili sia sul numero di file presenti all'interno del "
+"pacchetto del plugin stesso. \n"
+"Per iniziare ad usare il plugin PREMIUM che hai appena acquistato devi "
+"semplicemente scaricare il pacchetto PREMIUM ed installarlo sul tuo sito."
+
+#: templates/upgrade/upgrade-to-pro-version.php:9
+#, php-format
+msgid ""
+"%1$sDo you need to know how to do it?%2$s Easy! %1$sFollow this list of steps%2$s "
+"and in a few minutes the plugin you purchased will be installed on your site"
+msgstr ""
+"%1$sNon sai come fare ?%2$s Non è un problema%1$s, segui i passi elencati qui sotto"
+"%2$s ed in pochi minuti avrai il plugin acquistato correttamente installato sul "
+"tuo sito."
+
+#: templates/upgrade/upgrade-to-pro-version.php:12
+msgid "Go to yithemes.com and login to \"My Account\" page"
+msgstr "Vai su yithemes.com ed effettua il login alla sezione \"My Account \""
+
+#: templates/upgrade/upgrade-to-pro-version.php:18
+msgid ""
+"From the menu on the left, click on \"My Downloads\", look for the plugin you want "
+"to install among the available downloads and click on \"Download\" button"
+msgstr ""
+"Dal menù di sinistra clicca su \"My Downloads\" e cerca tra i download disponibili "
+"il plugin che vuoi installare, e clicca su \"Download\""
+
+#: templates/upgrade/upgrade-to-pro-version.php:24
+msgid ""
+"After downloading the packet, go to your website and login to WordPress "
+"administration area."
+msgstr ""
+"Non appena il download del pacchetto sarà completato recati sul tuo sito web ed "
+"effettua il login all'area amministrazione di WordPress."
+
+#: templates/upgrade/upgrade-to-pro-version.php:30
+msgid ""
+"From the menu on the left, click on \"Plugins\". You will be redirected to the "
+"page where you will find the complete list of all the plugins available on your "
+"site. Click on \"Add New\" button that you find above on the left to add a new "
+"plugin"
+msgstr ""
+"Dal menù di sinistra clicca sulla voce Plugins. Verrai indirizzato su una pagina "
+"con la lista dei plugin disponibili sul tuo sito. Clicca sul pulsante \"Add New\" "
+"che trovi in alto a sinistra vicino al titolo della pagina."
+
+#: templates/upgrade/upgrade-to-pro-version.php:36
+msgid ""
+"You will be redirected to a new page where you will find, above on the left next "
+"to the page title, the \"Upload Plugin\" button."
+msgstr ""
+"Verrai indirizzato su una nuova pagina dove trovi, in alto a sinistra vicino al "
+"titolo della pagina, il pulsante \"Upload Plugin\"."
+
+#: templates/upgrade/upgrade-to-pro-version.php:42
+msgid ""
+"Click on \"Upload Plugins\" button to start the upload of the PREMIUM version of "
+"the plugin previously downloaded. Click on \"Select File\", search for the "
+"download folder related to the plugin and upload the package. Now you only need to "
+"wait a few minutes for the upload and the installation on your site. (We used YITH "
+"Live Chat plugin by way of example)"
+msgstr ""
+"Cliccando su \"Upload Plugins\", ti troverai in una pagina dove poter effettuare "
+"l'upload del pacchetto del plugin PREMIUM da te precedentemente scaricato. Clicca "
+"quindi su \"Scegli File\", cerca la cartella di download dove hai scaricato il "
+"plugin ed effettua il caricamento del pacchetto. A questo punto ti basta attendere "
+"qualche minuto che il pacchetto venga caricato ed installato sul tuo sito. "
+"(Abbiamo usato YITH Live Chat come esempio) "
+
+#: templates/upgrade/upgrade-to-pro-version.php:48
+msgid "After completing the installation, click on \"Activate plugin\""
+msgstr "Al termine della procedura di installazione clicca su \"Attiva\""
+
+#: templates/upgrade/upgrade-to-pro-version.php:52
+msgid ""
+"If everything worked allright, your plugin is now correctly installed on your "
+"website. Enjoy it :-)"
+msgstr ""
+"Se tutto è andato per il meglio il tuo plugin è correttamente installato sul tuo "
+"sito web. Enjoy it :-)"
+
+#: templates/upgrade/upgrade-to-pro-version.php:55
+msgid ""
+"The last step is the activation of the plugin through its license key you received "
+"after the purchase. Click on \"License Activation\" that you find in \"YITH Plugins"
+"\" and insert the license key and the email address you used during the purchas."
+msgstr ""
+"Ultimo step è attivare il plugin con la chiave di licenza che hai ricevuto dopo "
+"l'acquisto. Clicca quindi sul link \"License Activation\" che trovi sotto \"YITH "
+"Plugins\" ed inserisci la license key in tuo possesso ed email utilizzata in fase "
+"di acquisto."
+
+#: templates/upgrade/upgrade-to-pro-version.php:61
+msgid ""
+"In case you had difficulty to recover the license key we sent you by email, you "
+"can easily find it in \"My Licenses\" section of your account on yithemes.com"
+msgstr ""
+"Se non trovi l'email che ti abbiamo inviato contenete la license key puoi "
+"facilmente recuperarla dalla sezione \"My Licenses\" all'interno della sezione My "
+"Account del nostro sito yithemes.com."
 
 #~ msgid "YIT Plugins"
 #~ msgstr "YIT Plugins"

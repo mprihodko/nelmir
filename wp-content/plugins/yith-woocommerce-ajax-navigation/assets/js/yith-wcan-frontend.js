@@ -96,6 +96,17 @@ jQuery(function ($) {
 
     var ajax_call = false;
 
+    var see_all_taxonomies = function(){
+
+        var categories_link = $('#yith-wcan-reset-all-categories').find('a.yith-wcan-reset-categories-link');
+        var tags_link       = $('#yith-wcan-reset-all-tags').find('a.yith-wcan-reset-tags-link');
+        categories_link.add(tags_link).on('click', function (e) {
+            $(this).yith_wcan_ajax_filters(e, this);
+        });
+    };
+
+
+
     $.fn.yith_wcan_ajax_filters = function (e, obj) {
         e.preventDefault();
         var href     = obj.href,
@@ -134,7 +145,7 @@ jQuery(function ($) {
 
             t.parents('div.yith-woo-ajax-navigation').find('a.yit-wcan-select-open').removeClass('active');
 
-            t.parent().find('div.yith-wcan-select-wrapper').animate({
+            t.parent().find('div.yith-wcan-select-wrapper').css('z-index', '-1').animate({
 
                 visibility: "hidden",
                 opacity   : 0
@@ -151,7 +162,7 @@ jQuery(function ($) {
         }
 
         if( yith_wcan.is_mobile == 1 ){
-            $('body').scrollTop( $(yith_wcan.scroll_top).offset().top );
+            $(window).scrollTop( $(yith_wcan.scroll_top).offset().top );
         }
 
         $(yith_wcan.pagination).hide();
@@ -165,6 +176,7 @@ jQuery(function ($) {
         ajax_call = $.ajax({
             url    : href,
             success: function (response) {
+
                 ajax_call = false;
                 $(yith_wcan.container).not('.ywcps-products').removeClass('yith-wcan-loading');
 
@@ -218,7 +230,7 @@ jQuery(function ($) {
                 });
 
                 //update browser history (IE doesn't support it)
-                if (!navigator.userAgent.match(/msie/i)) {
+                if (yith_wcan.change_browser_url == 1 && !navigator.userAgent.match(/msie/i)) {
                     window.history.pushState({"pageTitle": response.pageTitle}, "", href);
                 }
 
@@ -235,13 +247,19 @@ jQuery(function ($) {
                     }
                     $(document).trigger("yith-wcan-ajax-reset-filtered");
                 }
+
+                //See al categories in ajax
+                see_all_taxonomies()
             }
         });
     };
 
     //wrap the container
     $(yith_wcan.container).not('.ywcps-products').wrap('<div class="yit-wcan-container"></div>');
-    $(yith_wcan.container).not('.ywcps-products').wrap('<div class="yit-wcan-container"></div>');
+
+    $(document).on( 'yith-wcan-wrapped', function(){
+        see_all_taxonomies();
+    });
 
     $(document).trigger( 'yith-wcan-wrapped' );
 
@@ -249,8 +267,9 @@ jQuery(function ($) {
         $(this).yith_wcan_ajax_filters(e, this);
     });
 
-    /*AJAX NAVIGATION DROPDOWN STYLE*/
 
+
+    /*AJAX NAVIGATION DROPDOWN STYLE*/
     function yit_open_select_dropdown(element) {
 
         $(element).parent().find('div.yith-wcan-select-wrapper').css("z-index", "1").animate({
@@ -278,7 +297,7 @@ jQuery(function ($) {
 
     var yit_hidden_filters_wrapper = function () {
 
-        $('div.yith-wcan-select-wrapper').animate({
+        $('div.yith-wcan-select-wrapper').css("z-index", "-1").animate({
 
             visibility: "hidden",
             opacity   : 0

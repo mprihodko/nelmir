@@ -64,12 +64,14 @@ if ( ! class_exists( 'YITH_WCAN_Navigation_Widget' ) ) {
             $query_type      = isset( $instance['query_type'] ) ? $instance['query_type'] : 'and';
             $display_type    = isset( $instance['type'] ) ? $instance['type'] : 'list';
             $is_child_class  = 'yit-wcan-child-terms';
+            $is_parent_class = 'yit-wcan-parent-terms';
             $is_chosen_class = 'chosen';
             //TODO: Filtrare da premium
             //$terms_type_list = ( isset( $instance['display'] ) && ( $display_type == 'list' || $display_type == 'select' ) ) ? $instance['display'] : 'all';
             $terms_type_list = ( isset( $instance['display'] ) ) ? $instance['display'] : 'all';
 
             $instance['attribute'] = empty( $instance['attribute'] ) ? '' : $instance['attribute'];
+            $instance['extra_class'] = empty( $instance['extra_class'] ) ? '' : $instance['extra_class'];
 
             /* FIX TO WOOCOMMERCE 2.1 */
             if ( function_exists( 'wc_attribute_taxonomy_name' ) ) {
@@ -87,7 +89,6 @@ if ( ! class_exists( 'YITH_WCAN_Navigation_Widget' ) ) {
             }
 
             $terms = yit_get_terms( $terms_type_list, $taxonomy, $instance );
-
 
             if ( count( $terms ) > 0 ) {
                 ob_start();
@@ -110,189 +111,29 @@ if ( ! class_exists( 'YITH_WCAN_Navigation_Widget' ) ) {
                 }
 
                 if ( in_array( $display_type, apply_filters( 'yith_wcan_display_type_list', array( 'list' ) ) ) ) {
-                    // List display
-                    echo "<ul class='yith-wcan-list yith-wcan'>";
+                    $ancestors = get_terms(
+                        $taxonomy,
+                        array(
+                            'parent'        => 0,
+                            'hierarchical'  => true,
+                            'hide_empty'    => false,
+                        )
+                    );
 
-                    foreach ( $terms as $term ) {
-
-                        // Get count based on current view - uses transients
-                        $transient_name = 'wc_ln_count_' . md5( sanitize_key( $taxonomy ) . sanitize_key( $term->term_id ) );
-
-                        //if ( false === ( $_products_in_term = get_transient( $transient_name ) ) ) {
-
-                        $_products_in_term = get_objects_in_term( $term->term_id, $taxonomy );
-
-                        set_transient( $transient_name, $_products_in_term );
-                        //}
-
-                        $option_is_set = ( isset( $_chosen_attributes[$taxonomy] ) && in_array( $term->term_id, $_chosen_attributes[$taxonomy]['terms'] ) );
-
-                        $term_param = apply_filters( 'yith_wcan_term_param_uri', $term->term_id, $display_type, $term );
-
-                        // If this is an AND query, only show options with count > 0
-                        if ( $query_type == 'and' ) {
-
-                            $count = sizeof( array_intersect( $_products_in_term, $woocommerce->query->filtered_product_ids ) );
-
-                            // skip the term for the current archive
-                            if ( $current_term == $term_param ) {
-                                continue;
-                            }
-
-                            if ( $count > 0 && $current_term !== $term_param ) {
-                                $this->found = true;
-                            }
-
-                            if ( ( ( $terms_type_list == 'hierarchical' || ( $terms_type_list == 'tags' && $instance['display'] == 'hierarchical' ) ) || ! yit_term_has_child( $term, $taxonomy ) ) && $count == 0 && ! $option_is_set ) {
-                                continue;
-                            }
-
-                            // If this is an OR query, show all options so search can be expanded
-                        }
-                        else {
-
-                            // skip the term for the current archive
-                            if ( $current_term == $term_param ) {
-                                continue;
-                            }
-
-                            $count = sizeof( array_intersect( $_products_in_term, $woocommerce->query->unfiltered_product_ids ) );
-
-                            if ( $count > 0 ) {
-                                $this->found = true;
-                            }
-
-                        }
-
-                        $arg = apply_filters( 'yith_wcan_list_type_query_arg', 'filter_' . sanitize_title( $instance['attribute'] ), $display_type, $term );
-
-                        $current_filter = ( isset( $_GET[$arg] ) ) ? explode(apply_filters( 'yith_wcan_list_filter_operator', ',', $display_type ), apply_filters( "yith_wcan_list_filter_query_{$arg}", $_GET[$arg] ) ) : array();
-
-                        if ( ! is_array( $current_filter ) ) {
-                            $current_filter = array();
-                        }
-
-                        $current_filter = array_map( 'esc_attr', $current_filter );
-
-                        if ( ! in_array( $term_param, $current_filter ) ) {
-                            $current_filter[] = $term_param;
-                        }
-
-                        $link = yit_get_woocommerce_layered_nav_link();
-
-                        // All current filters
-                        if ( $_chosen_attributes ) {
-                            foreach ( $_chosen_attributes as $name => $data ) {
-                                if ( $name !== $taxonomy ) {
-
-                                    // Exclude query arg for current term archive term
-                                    while ( in_array( $current_term, $data['terms'] ) ) {
-                                        $key = array_search( $current_term, $data );
-                                        unset( $data['terms'][$key] );
-                                    }
-
-                                    // Remove pa_ and sanitize
-                                    $filter_name = sanitize_title( str_replace( 'pa_', '', $name ) );
-
-                                    if ( ! empty( $data['terms'] ) ) {
-                                        $link = add_query_arg( 'filter_' . $filter_name, implode( ',', $data['terms'] ), $link );
-                                    }
-
-                                    if ( $data['query_type'] == 'or' ) {
-                                        $link = add_query_arg( 'query_type_' . $filter_name, 'or', $link );
-                                    }
-                                }
-                            }
-                        }
-
-                        // Min/Max
-                        if ( isset( $_GET['min_price'] ) ) {
-                            $link = add_query_arg( 'min_price', $_GET['min_price'], $link );
-                        }
-
-                        if ( isset( $_GET['max_price'] ) ) {
-                            $link = add_query_arg( 'max_price', $_GET['max_price'], $link );
-                        }
-
-                        if ( isset( $_GET['product_tag'] ) && $display_type != 'tags' ) {
-                            $link = add_query_arg( 'product_tag', urlencode( $_GET['product_tag'] ), $link );
-                        }
-
-                        if ( isset( $_GET[ $this->brand_taxonomy ] ) ) {
-                            $brands = get_term_by( 'slug', $_GET[ $this->brand_taxonomy ], $this->brand_taxonomy );
-                            if( $brands->term_id != $term->term_id ){
-                                $link = add_query_arg( $this->brand_taxonomy, urlencode( $brands->slug ), $link );
-                            }
-                        }
-
-                        if( isset( $_GET['product_cat'] ) ){
-                            $categories_filter_operator = 'and' == $query_type ? '+' : ',';
-                            $_chosen_categories = explode( $categories_filter_operator, urlencode( $_GET['product_cat'] ) );
-                            $link  = add_query_arg(
-                                'product_cat',
-                                implode( apply_filters( 'yith_wcan_categories_filter_operator', $categories_filter_operator, $display_type ), $_chosen_categories ),
-                                $link
-                            );
-                        }
-
-                        if( isset( $_GET['product_cat'] ) ){
-                            $categories_filter_operator = 'and' == $query_type ? '+' : ',';
-                            $_chosen_categories = explode( $categories_filter_operator, urlencode( $_GET['product_cat'] ) );
-                            $link  = add_query_arg(
-                                'product_cat',
-                                implode( apply_filters( 'yith_wcan_categories_filter_operator', $categories_filter_operator, $display_type ), $_chosen_categories ),
-                                $link
-                            );
-                        }
-
-                        $check_for_current_widget = isset( $_chosen_attributes[$taxonomy] ) && is_array( $_chosen_attributes[$taxonomy]['terms'] ) && in_array( $term->term_id, $_chosen_attributes[$taxonomy]['terms'] );
-
-                        // Current Filter = this widget
-                        if ( apply_filters( 'yith_wcan_list_type_current_widget_check', $check_for_current_widget, $current_filter, $display_type, $term_param ) ) {
-                            $class = ( ( $terms_type_list == 'hierarchical' || ( $terms_type_list == 'tags' && $instance['display'] == 'hierarchical' ) ) && yit_term_is_child( $term ) ) ? "class='{$is_chosen_class}  {$is_child_class}'" : "class='{$is_chosen_class}'";
-
-                            // Remove this term is $current_filter has more than 1 term filtered
-                            if ( sizeof( $current_filter ) > 1 ) {
-                                $current_filter_without_this = array_diff( $current_filter, array( $term_param ) );
-                                $link                        = add_query_arg( $arg, implode( apply_filters( 'yith_wcan_list_filter_operator', ',', $display_type ), $current_filter_without_this ), $link );
-                            }
-                        }
-
-                        else {
-                            $class = ( ( $terms_type_list == 'hierarchical' || $terms_type_list == 'tags' ) && yit_term_is_child( $term ) ) ? "class='{$is_child_class}'" : '';
-                            $link  = add_query_arg( $arg, implode( apply_filters( 'yith_wcan_list_filter_operator', ',', $display_type ), $current_filter ), $link );
-                        }
-
-                        // Search Arg
-                        if ( get_search_query() ) {
-                            $link = add_query_arg( 's', get_search_query(), $link );
-                        }
-
-                        // Post Type Arg
-                        if ( isset( $_GET['post_type'] ) ) {
-                            $link = add_query_arg( 'post_type', $_GET['post_type'], $link );
-                        }
-
-                        $is_attribute = apply_filters( 'yith_wcan_is_attribute_check', true );
-
-                        // Query type Arg
-                        if ( $is_attribute && $query_type == 'or' && ! ( sizeof( $current_filter ) == 1 && isset( $_chosen_attributes[$taxonomy]['terms'] ) && is_array( $_chosen_attributes[$taxonomy]['terms'] ) && in_array( $term->term_id, $_chosen_attributes[$taxonomy]['terms'] ) ) ) {
-                            $link = add_query_arg( 'query_type_' . sanitize_title( $instance['attribute'] ), 'or', $link );
-                        }
-
-
-                        echo '<li ' . $class . '>';
-
-                        echo ( $count > 0 || $option_is_set ) ? '<a href="' . esc_url( apply_filters( 'woocommerce_layered_nav_link', $link ) ) . '">' : '<span>';
-
-                        echo $term->name;
-
-                        echo ( $count > 0 || $option_is_set ) ? '</a>' : '</span>';
-
-                        if ( $count != 0 && apply_filters( "{$args['widget_id']}-show_product_count", true, $instance ) ) {
-                            echo ' <small class="count">' . $count . '</small><div class="clear"></div></li>';
+                    if( ! empty( $ancestors ) ){
+                        foreach( $ancestors as $ancestor ){
+                            $tree[ $ancestor->term_id ] = yit_reorder_hierachical_categories( $ancestor->term_id, $taxonomy );
                         }
                     }
+
+                    do_action( 'yith_wcan_before_print_list', $taxonomy );
+
+                    $this->add_reset_taxonomy_link( $taxonomy, $instance );
+                    
+                    // List display
+                    echo "<ul class='yith-wcan-list yith-wcan {$instance['extra_class']}'>";
+                    
+                    $this->get_list_html( $tree, $taxonomy, $query_type, $display_type, $instance, $terms_type_list, $current_term, $args, $is_child_class, $is_parent_class, $is_chosen_class );
 
                     echo "</ul>";
                 }
@@ -306,7 +147,7 @@ if ( ! class_exists( 'YITH_WCAN_Navigation_Widget' ) ) {
                     // Select display
                     echo "<div class='yith-wcan-select-wrapper'>";
 
-                    echo "<ul class='yith-wcan-select yith-wcan'>";
+                    echo "<ul class='yith-wcan-select yith-wcan {$instance['extra_class']}'>";
 
                     foreach ( $terms as $term ) {
 
@@ -477,11 +318,10 @@ if ( ! class_exists( 'YITH_WCAN_Navigation_Widget' ) ) {
                     echo "</ul>";
 
                     echo "</div>";
-
                 }
                 elseif ( $display_type == 'color' ) {
                     // List display
-                    echo "<ul class='yith-wcan-color yith-wcan yith-wcan-group'>";
+                    echo "<ul class='yith-wcan-color yith-wcan yith-wcan-group {$instance['extra_class']}'>";
 
                     foreach ( $terms as $term ) {
 
@@ -654,7 +494,7 @@ if ( ! class_exists( 'YITH_WCAN_Navigation_Widget' ) ) {
                 }
                 elseif ( $display_type == 'label' ) {
                     // List display
-                    echo "<ul class='yith-wcan-label yith-wcan yith-wcan-group'>";
+                    echo "<ul class='yith-wcan-label yith-wcan yith-wcan-group {$instance['extra_class']}'>";
 
                     foreach ( $terms as $term ) {
 
@@ -847,14 +687,15 @@ if ( ! class_exists( 'YITH_WCAN_Navigation_Widget' ) ) {
             global $woocommerce;
 
             $defaults = array(
-                'title'      => '',
-                'attribute'  => '',
-                'query_type' => 'and',
-                'type'       => 'list',
-                'colors'     => '',
-                'multicolor' => array(),
-                'labels'     => '',
-                'display'    => 'all'
+                'title'         => '',
+                'attribute'     => '',
+                'query_type'    => 'and',
+                'type'          => 'list',
+                'colors'        => '',
+                'multicolor'    => array(),
+                'labels'        => '',
+                'display'       => 'all',
+                'extra_class'   => ''
             );
 
             $instance = wp_parse_args( (array) $instance, $defaults );
@@ -911,6 +752,15 @@ if ( ! class_exists( 'YITH_WCAN_Navigation_Widget' ) ) {
                 </select>
             </p>
 
+            <?php if( defined( 'YITH_WCAN_PREMIUM' ) ) : ?>
+            <p>
+                <label>
+                    <strong><?php _e( 'CSS custom class', 'yith-woocommerce-ajax-navigation' ) ?>:</strong><br />
+                    <input class="widefat" type="text" id="<?php echo $this->get_field_id( 'extra_class' ); ?>" name="<?php echo $this->get_field_name( 'extra_class' ); ?>" value="<?php echo $instance['extra_class']; ?>" />
+                </label>
+            </p>
+            <?php endif; ?>
+
             <div class="yith_wcan_placeholder">
                 <?php
                 $values = array();
@@ -949,15 +799,16 @@ if ( ! class_exists( 'YITH_WCAN_Navigation_Widget' ) ) {
         function update( $new_instance, $old_instance ) {
             global $woocommerce;
 
-            $instance               = $old_instance;
-            $instance['title']      = strip_tags( $new_instance['title'] );
-            $instance['attribute']  = stripslashes( $new_instance['attribute'] );
-            $instance['query_type'] = stripslashes( $new_instance['query_type'] );
-            $instance['type']       = stripslashes( $new_instance['type'] );
-            $instance['colors']     = ! empty( $new_instance['colors'] ) ? $new_instance['colors'] : array();
-            $instance['multicolor'] = ! empty( $new_instance['multicolor'] ) ? $new_instance['multicolor'] : array();
-            $instance['labels']     = ! empty( $new_instance['labels'] ) ? $new_instance['labels'] : array();
-            $instance['display']    = $new_instance['display'];
+            $instance                   = $old_instance;
+            $instance['title']          = strip_tags( $new_instance['title'] );
+            $instance['attribute']      = stripslashes( $new_instance['attribute'] );
+            $instance['query_type']     = stripslashes( $new_instance['query_type'] );
+            $instance['type']           = stripslashes( $new_instance['type'] );
+            $instance['colors']         = ! empty( $new_instance['colors'] ) ? $new_instance['colors'] : array();
+            $instance['multicolor']     = ! empty( $new_instance['multicolor'] ) ? $new_instance['multicolor'] : array();
+            $instance['labels']         = ! empty( $new_instance['labels'] ) ? $new_instance['labels'] : array();
+            $instance['display']        = $new_instance['display'];
+            $instance['extra_class']    = ! empty ( $new_instance['extra_class'] ) ? $new_instance['extra_class'] : '';
 
             return $instance;
         }
@@ -1003,9 +854,234 @@ if ( ! class_exists( 'YITH_WCAN_Navigation_Widget' ) ) {
                 );
             }
 
-
             echo json_encode( $return );
             die();
         }
+
+        public function get_list_html( $terms, $taxonomy, $query_type, $display_type, $instance, $terms_type_list, $current_term, $args, $is_child_class, $is_parent_class, $is_chosen_class, $level = 0 ){
+            global $woocommerce, $_chosen_attributes;
+            foreach ( $terms as $parent_id => $term_ids ) {
+                $term = get_term_by( 'id', $parent_id, $taxonomy );
+
+                $exclude    = apply_filters( 'yith_wcan_exclude_terms', array(), $instance );
+                $include    = apply_filters( 'yith_wcan_include_terms', array(), $instance );
+                $echo       = false;
+                
+                if( 'tags' == $instance['type'] ) {
+                    if ( 'exclude' ==  $instance['tags_list_query'] ){
+                        $echo = ! in_array( $term->term_id, $exclude );
+                    }
+
+                    elseif ( 'include' ==  $instance['tags_list_query'] ){
+                        $echo = in_array( $term->term_id, $include );
+                    }
+                }
+
+                else {
+                    $echo = true;
+                }
+
+                $filter_by_tags_hierarchical = ($terms_type_list == 'tags' && $instance['display'] == 'hierarchical');
+
+                if( $echo ) {
+
+                    // Get count based on current view - uses transients
+                    $transient_name = 'wc_ln_count_' . md5(sanitize_key($taxonomy) . sanitize_key($term->term_id));
+
+                    //if ( false === ( $_products_in_term = get_transient( $transient_name ) ) ) {
+
+                    $_products_in_term = get_objects_in_term($term->term_id, $taxonomy);
+
+                    set_transient($transient_name, $_products_in_term);
+                    //}
+
+                    $option_is_set = (isset($_chosen_attributes[$taxonomy]) && in_array($term->term_id, $_chosen_attributes[$taxonomy]['terms']));
+
+                    $term_param = apply_filters('yith_wcan_term_param_uri', $term->term_id, $display_type, $term);
+
+                    // If this is an AND query, only show options with count > 0
+                    if ($query_type == 'and') {
+
+                        $count = sizeof(array_intersect($_products_in_term, $woocommerce->query->filtered_product_ids));
+
+                        // skip the term for the current archive
+                        if ($current_term == $term_param) {
+                            continue;
+                        }
+
+                        if ($count > 0 && $current_term !== $term_param) {
+                            $this->found = true;
+                        }
+
+                        if ( ! $filter_by_tags_hierarchical && ( ( $terms_type_list == 'hierarchical' ) || ! yit_term_has_child( $term, $taxonomy) ) && $count == 0 && ! $option_is_set ) {
+                            continue;
+                        }
+
+                        // If this is an OR query, show all options so search can be expanded
+                    } else {
+
+                        // skip the term for the current archive
+                        if ($current_term == $term_param) {
+                            continue;
+                        }
+
+                        $count = sizeof(array_intersect($_products_in_term, $woocommerce->query->unfiltered_product_ids));
+
+                        if ($count > 0) {
+                            $this->found = true;
+                        }
+
+                    }
+
+                    $arg = apply_filters('yith_wcan_list_type_query_arg', 'filter_' . sanitize_title($instance['attribute']), $display_type, $term);
+
+                    $current_filter = (isset($_GET[$arg])) ? explode(apply_filters('yith_wcan_list_filter_operator', ',', $display_type), apply_filters("yith_wcan_list_filter_query_{$arg}", $_GET[$arg])) : array();
+
+                    if (!is_array($current_filter)) {
+                        $current_filter = array();
+                    }
+
+                    $current_filter = array_map('esc_attr', $current_filter);
+
+                    if (!in_array($term_param, $current_filter)) {
+                        $current_filter[] = $term_param;
+                    }
+
+                    $link = yit_get_woocommerce_layered_nav_link();
+
+                    // All current filters
+                    if ($_chosen_attributes) {
+                        foreach ($_chosen_attributes as $name => $data) {
+                            if ($name !== $taxonomy) {
+
+                                // Exclude query arg for current term archive term
+                                while (in_array($current_term, $data['terms'])) {
+                                    $key = array_search($current_term, $data);
+                                    unset($data['terms'][$key]);
+                                }
+
+                                // Remove pa_ and sanitize
+                                $filter_name = sanitize_title(str_replace('pa_', '', $name));
+
+                                if (!empty($data['terms'])) {
+                                    $link = add_query_arg('filter_' . $filter_name, implode(',', $data['terms']), $link);
+                                }
+
+                                if ($data['query_type'] == 'or') {
+                                    $link = add_query_arg('query_type_' . $filter_name, 'or', $link);
+                                }
+                            }
+                        }
+                    }
+
+                    // Min/Max
+                    if (isset($_GET['min_price'])) {
+                        $link = add_query_arg('min_price', $_GET['min_price'], $link);
+                    }
+
+                    if (isset($_GET['max_price'])) {
+                        $link = add_query_arg('max_price', $_GET['max_price'], $link);
+                    }
+
+                    if (isset($_GET['product_tag']) && $display_type != 'tags') {
+                        $link = add_query_arg('product_tag', urlencode($_GET['product_tag']), $link);
+                    }
+
+                    if (isset($_GET[$this->brand_taxonomy])) {
+                        $brands = get_term_by('slug', $_GET[$this->brand_taxonomy], $this->brand_taxonomy);
+                        if ($brands->term_id != $term->term_id) {
+                            $link = add_query_arg($this->brand_taxonomy, urlencode($brands->slug), $link);
+                        }
+                    }
+
+                    if (isset($_GET['product_cat'])) {
+                        $categories_filter_operator = 'and' == $query_type ? '+' : ',';
+                        $_chosen_categories = explode($categories_filter_operator, urlencode($_GET['product_cat']));
+                        $link = add_query_arg(
+                            'product_cat',
+                            implode(apply_filters('yith_wcan_categories_filter_operator', $categories_filter_operator, $display_type), $_chosen_categories),
+                            $link
+                        );
+                    }
+
+                    $check_for_current_widget = isset($_chosen_attributes[$taxonomy]) && is_array($_chosen_attributes[$taxonomy]['terms']) && in_array($term->term_id, $_chosen_attributes[$taxonomy]['terms']);
+                    $class = '';
+
+                    // Current Filter = this widget
+                    if (apply_filters('yith_wcan_list_type_current_widget_check', $check_for_current_widget, $current_filter, $display_type, $term_param)) {
+                        if (($terms_type_list == 'hierarchical' || ($terms_type_list == 'tags' && $instance['display'] == 'hierarchical'))) {
+                            $level_class = 'level-' . $level;
+                            if (yit_term_is_child($term)) {
+                                $class = "class='{$is_chosen_class}  {$is_child_class} {$level_class}'";
+                            } elseif (yit_term_is_parent($term)) {
+                                $class = "class='{$is_chosen_class}  {$is_parent_class} {$level_class}'";
+                            }
+                        } else {
+                            $class = "class='{$is_chosen_class}'";
+                        }
+
+
+                        // Remove this term is $current_filter has more than 1 term filtered
+                        if (sizeof($current_filter) > 1) {
+                            $current_filter_without_this = array_diff($current_filter, array($term_param));
+                            $link = add_query_arg($arg, implode(apply_filters('yith_wcan_list_filter_operator', ',', $display_type), $current_filter_without_this), $link);
+                        }
+                    } else {
+
+                        if (($terms_type_list == 'hierarchical' || $terms_type_list == 'tags')) {
+                            $level_class = 'level-' . $level;
+                            if (yit_term_is_child($term)) {
+
+                                $class = "class='{$is_child_class} {$level_class}'";
+                            } elseif (yit_term_is_parent($term)) {
+                                $class = "class='{$is_parent_class} {$level_class}'";
+                            }
+                        }
+                        $link = add_query_arg($arg, implode(apply_filters('yith_wcan_list_filter_operator', ',', $display_type), $current_filter), $link);
+                    }
+
+                    // Search Arg
+                    if (get_search_query()) {
+                        $link = add_query_arg('s', get_search_query(), $link);
+                    }
+
+                    // Post Type Arg
+                    if (isset($_GET['post_type'])) {
+                        $link = add_query_arg('post_type', $_GET['post_type'], $link);
+                    }
+
+                    $is_attribute = apply_filters('yith_wcan_is_attribute_check', true);
+
+                    // Query type Arg
+                    if ($is_attribute && $query_type == 'or' && !(sizeof($current_filter) == 1 && isset($_chosen_attributes[$taxonomy]['terms']) && is_array($_chosen_attributes[$taxonomy]['terms']) && in_array($term->term_id, $_chosen_attributes[$taxonomy]['terms']))) {
+                        $link = add_query_arg('query_type_' . sanitize_title($instance['attribute']), 'or', $link);
+                    }
+
+                    echo '<li ' . $class . '>';
+
+                    if( $count > 0 || $option_is_set ) {
+                        printf( '<a href="%s">%s</a>' , esc_url( apply_filters( 'woocommerce_layered_nav_link', $link ) ), $term->name );
+                    }
+
+                    else {
+                        ! $filter_by_tags_hierarchical && printf( '<span>%s</span>', $term->name );
+                    }
+
+                    if ( $count != 0 && apply_filters( "{$args['widget_id']}-show_product_count", true, $instance ) ) {
+                        echo ' <small class="count">' . $count . '</small><div class="clear"></div></li>';
+                    }
+
+                }
+
+                if( ! empty( $term_ids ) && is_array( $term_ids ) ){
+                    $temp_level = $level;
+                    $temp_level++;
+                    $this->get_list_html( $term_ids, $taxonomy, $query_type, $display_type, $instance, $terms_type_list, $current_term, $args, $is_child_class, $is_parent_class, $is_chosen_class, $temp_level );
+                }
+            }
+        }
+
+        //Override in Premium classes
+        public function add_reset_taxonomy_link( $taxonomy, $instance ){}
     }
 }

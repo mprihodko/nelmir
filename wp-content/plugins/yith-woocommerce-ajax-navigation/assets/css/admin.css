@@ -191,6 +191,7 @@ input#yit_wcan_options_yith_wcan_ajax_shop_result_container,
 input#yit_wcan_options_yith_wcan_ajax_widget_title_class,
 input#yit_wcan_options_yith_wcan_ajax_scroll_top_class,
 input#yit_wcan_options_yith_wcan_ajax_shop_pagination_anchor_class,
+input#yit_wcan_options_yith_wcan_enable_see_all_categories_link_text,
 input#yit_wcan_options_yith_wcan_ajax_widget_title_tag {
     width: 230px;
 }
@@ -227,4 +228,9 @@ div#yit_wcan_options_yith_wcan_seo_value-container .option .select_wrapper,
 
 .yit-plugins_page_yith_wcan_panel .yit_options input:not(.button):not(.number):not(#export-file):not(#delete-cache):not(#reset-theme-options):not(#delete-custom-sidebars):not(#delete-resized-images):not(#install-sampledata) {
     margin-bottom: 10px;
+}
+
+.yith-wcan-see-all-taxonomies-text-default,
+.yith-wcan-see-all-taxonomies-text-description {
+    display: block;
 }

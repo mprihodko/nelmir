@@ -66,16 +66,17 @@ if ( ! class_exists( 'YITH_WCAN_Frontend' ) ) {
                 ! empty( $custom_style ) && wp_add_inline_style( 'yith-wcan-frontend', sanitize_text_field( $custom_style ) );
 
                 $args = apply_filters( 'yith_wcan_ajax_frontend_classes', array(
-                        'container'       => yith_wcan_get_option( 'yith_wcan_ajax_shop_container', '.products' ),
-                        'pagination'      => yith_wcan_get_option( 'yith_wcan_ajax_shop_pagination', 'nav.woocommerce-pagination' ),
-                        'result_count'    => yith_wcan_get_option( 'yith_wcan_ajax_shop_result_container', '.woocommerce-result-count' ),
-                        'wc_price_slider' => array(
+                        'container'             => yith_wcan_get_option('yith_wcan_ajax_shop_container', '.products'),
+                        'pagination'            => yith_wcan_get_option('yith_wcan_ajax_shop_pagination', 'nav.woocommerce-pagination'),
+                        'result_count'          => yith_wcan_get_option('yith_wcan_ajax_shop_result_container', '.woocommerce-result-count'),
+                        'wc_price_slider'       => array(
                             'wrapper'   => '.price_slider',
                             'min_price' => '.price_slider_amount #min_price',
                             'max_price' => '.price_slider_amount #max_price',
                         ),
-                        'is_mobile'       => wp_is_mobile(),
-                        'scroll_top'      => yith_wcan_get_option( 'yith_wcan_ajax_scroll_top_class', '.yit-wcan-container' ),
+                        'is_mobile'             => wp_is_mobile(),
+                        'scroll_top'            => yith_wcan_get_option('yith_wcan_ajax_scroll_top_class', '.yit-wcan-container'),
+                        'change_browser_url'    => 'yes' == yith_wcan_get_option( 'yith_wcan_change_browser_url', 'yes' ) ? true : false
                     )
                 );
 
