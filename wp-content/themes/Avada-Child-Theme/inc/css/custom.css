@@ -16,6 +16,46 @@
 	display: block;
 	width: 100%;
 }
+#content .product .additionalinfo{
+	margin: 15px 0;
+	    float: left;
+	    text-align: center;
+    width: 100%;
+}
+#content .product .additionalinfo .excerpt_desc{
+	text-align: left;
+}
+#content .product .additionalinfo .excerpt_desc ul{
+	list-style-type: none;
+	font-size: 16px;
+	padding: 0;
+}
+#content .product .additionalinfo .order_review button{
+	background: rgb(41, 22, 112);
+	box-shadow: 0 0 0px rgba(0,0,0,0.5);
+  -webkit-transition: box-shadow 0.3s ease-out 0.1s;
+  -moz-transition: box-shadow 0.3s ease-out 0.1s;
+  -o-transition: box-shadow 0.3s ease-out 0.1s;
+  transition: box-shadow 0.3s ease-out 0.1s;
+  width: 100%;
+  margin: 5px 0;
+}
+#content .product .additionalinfo .order_review button:hover{
+	cursor: pointer;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  -webkit-transition: box-shadow 0.3s ease-out 0.1s;
+  -moz-transition: box-shadow 0.3s ease-out 0.1s;
+  -o-transition: box-shadow 0.3s ease-out 0.1s;
+  transition: box-shadow 0.3s ease-out 0.1s;
+}
+#content .product .additionalinfo .order_review h2{
+	text-align: center;
+	display: block;
+	width: 100%;
+	font-weight: bold;
+	color: rgb(37, 113, 185);
+	margin: 5px 0;
+}
 #content .product .thumbnails.columns-3{
 	float: left;
     width: 100%;

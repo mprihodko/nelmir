@@ -18,7 +18,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
+global $product;
 /**
  * Filter tabs and allow third parties to add their own.
  *
@@ -28,6 +28,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 // $tabs = apply_filters( 'woocommerce_product_tabs', array() );
 $tabs=null;
 the_content();
+?>
+<div class="additionalinfo">
+	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 excerpt_desc">
+		<?php the_excerpt(); ?>
+	</div>
+	<div class="order_review col-lg-6 col-md-6 col-sm-12 col-xs-12">
+		<h2>Цена: <?php echo $product->get_price_html(); ?></h2>
+		<button class="button order_btn" data-target="#order_review" data-toggle="modal">Заказать Осмотр</button>
+	</div>
+</div>
+<?php
 if ( ! empty( $tabs ) ) : ?>
 
 	<div class="woocommerce-tabs wc-tabs-wrapper">

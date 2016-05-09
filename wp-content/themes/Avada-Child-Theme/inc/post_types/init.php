@@ -37,8 +37,10 @@ class Nelmir_main {
 /* ------------------------------------------------------------------------- *\
 		ACTIONS
 \* ------------------------------------------------------------------------- */
-	add_action('add_meta_boxes', 	array(__CLASS__, 'maps_add_custom_box'));
-	add_action( 'save_post', 		array(__CLASS__, 'maps_save_postdata' ));
+		add_action('add_meta_boxes', 	array(__CLASS__, 'maps_add_custom_box'));
+		add_action( 'save_post', 		array(__CLASS__, 'maps_save_postdata' ));
+		add_action('add_meta_boxes', 	array(__CLASS__, 'additional_custom_box'));
+		add_action( 'save_post', 		array(__CLASS__, 'additional_save_postdata' ));
 /* ------------------------------------------------------------------------- *\
 		SHORTCODES
 \* ------------------------------------------------------------------------- */
@@ -64,49 +66,34 @@ class Nelmir_main {
 		 
 	}
 
-	/* Добавляем блоки в основную колонку на страницах постов и пост. страниц */
+
+/* ------------------------------------------------------------------------- *\  
+		ADD ADDRESS METABOX FOR GMAPS
+\* ------------------------------------------------------------------------- */	
 	public function maps_add_custom_box() {
 		$screens = array( 'product' );
 		foreach ( $screens as $screen )
-			add_meta_box( 'myplugin_sectionid', 'Адрес Дома/Квартиры', array(__CLASS__,'maps_meta_box_callback'), $screen );
-	}
-
-	/* HTML код блока */
-	public function maps_meta_box_callback() {
-		// Используем nonce для верификации
-		wp_nonce_field( plugin_basename(__FILE__), 'myplugin_noncename' );
-
-		// Поля формы для введения данных
+			add_meta_box( 'gmap_address', 'Адрес Дома/Квартиры', array(__CLASS__,'maps_meta_box_callback'), $screen );
+	}	
+	public function maps_meta_box_callback() {		
+		wp_nonce_field( plugin_basename(__FILE__), 'myplugin_noncename' );	
+		$content=get_post_meta($_GET['post'], 'gmap_address', true);	
 		echo '<label for="myplugin_new_field">Адрес</label> ';
-		echo '<input type="text" id= "myplugin_new_field" name="myplugin_new_field" value="" size="25" />';
-	}
-
-	/* Сохраняем данные, когда пост сохраняется */
-	public function maps_save_postdata( $post_id ) {
-		// проверяем nonce нашей страницы, потому что save_post может быть вызван с другого места.
+		echo '<input type="text" id= "myplugin_new_field" name="myplugin_new_field" value="'.$content.'" size="25" />';
+	}	
+	public function maps_save_postdata( $post_id ) {		
 		if ( ! wp_verify_nonce( $_POST['myplugin_noncename'], plugin_basename(__FILE__) ) )
 			return $post_id;
-
-		// проверяем, если это автосохранение ничего не делаем с данными нашей формы.
 		if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) 
-			return $post_id;
-
-		// проверяем разрешено ли пользователю указывать эти данные
+			return $post_id;		
 		if ( 'page' == $_POST['post_type'] && ! current_user_can( 'edit_page', $post_id ) ) {
 			  return $post_id;
 		} elseif( ! current_user_can( 'edit_post', $post_id ) ) {
 			return $post_id;
-		}
-
-		// Убедимся что поле установлено.
+		}		 
 		if ( ! isset( $_POST['myplugin_new_field'] ) )
-			return;
-
-		// Все ОК. Теперь, нужно найти и сохранить данные
-		// Очищаем значение поля input.
+			return;		
 		$my_data = sanitize_text_field( $_POST['myplugin_new_field'] );
-
-		// Обновляем данные в базе данных.
 		update_post_meta( $post_id, 'gmap_address', $my_data );
 	}
 
