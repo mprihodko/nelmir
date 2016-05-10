@@ -820,10 +820,15 @@ body .yith-woocommerce-ajax-product-filter.yith-woo-ajax-navigation.woocommerce.
 body {
         background-color: #E4F1F8 !important;
 }
-.home .fusion-social-networks {
+#footer .fusion-social-networks {
     display: none !important;
 }
 
+@media(min-width: 651px) and (max-width: 1210px) {
+    .single-product #sidebar {
+        margin-left: -75%;
+    }
+}
 
 
 @media(min-width: 100px) and (max-width: 1000px) {
@@ -897,7 +902,22 @@ min-height: 52px;
 
 }
 
-  @media(min-width: 100px) and (max-width: 640px) {
+  @media(min-width: 100px) and (max-width: 650px) {
+      .single-product  .woocommerce-container {
+          width: 100%;
+          margin-left: 0px;
+      } 
+      .single-product  #sidebar {
+          width: 100% !important;
+         position: relative;
+         margin-left: 0px;
+      } 
+       .single-product  #sidebar-2 {
+          width: 100% !important;
+         position: relative;
+         margin-left: 0px;
+      } 
+      
 #sidebar .widgettitle {
     max-width: 100%;
 
