@@ -80,7 +80,7 @@ get_header( 'shop' ); ?>
                                    echo   $koostis; ?>
                                 </div>
                                 <div class="excerpt">
-                                      <?php echo get_the_excerpt( get_the_ID() ); ?>
+                                      <?php  echo substr(get_the_content(), 0, 250)."..." ?>
                                 </div>
                                 <div class="lpart">
                                     <div class="price">
