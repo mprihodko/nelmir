@@ -141,8 +141,12 @@ if( ! class_exists( 'FusionTemplateWoo' ) ) {
 			} else {
 				$sidebar_left = 1;
 			}
-
-			echo '<div class="woocommerce-container"><div id="content" style="' . $content_css . '">';
+			// var_dump(is_category());
+			if(is_product_category()){
+				$c_css='categories';
+				$content_css = '';
+			}
+			echo '<div class="woocommerce-container"><div id="content" class="'.$c_css.'" style="' . $content_css . '">';
 		}
 
 		function shop_title() {

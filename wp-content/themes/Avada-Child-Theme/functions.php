@@ -20,3 +20,4 @@ function remove_loop_button(){
 add_action('init','remove_loop_button');
 
 add_shortcode("wc_get_attribute_taxonomies", 'wc_get_attribute_taxonomies');
+// add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 1;' ), 20 );

@@ -21,7 +21,7 @@ class filtersSidebarWidget extends WP_Widget {
 \* -------------------------------------------------------------------------*/
 	function __construct() {
 		parent::__construct(
-			'Filters Sidebar Widget', 
+			'filters-sidebar-widget', 
 			'Подбор параметров'
 		);
 	}
@@ -37,7 +37,7 @@ class filtersSidebarWidget extends WP_Widget {
 			echo $args['before_title'] . $title . $args['after_title'];
  
 		if($shortcode)
-			echo do_shortcode($shortcode); 
+			echo do_shortcode('[wc_flat_filters tax="'.$shortcode.'"]'); 
 		echo $args['after_widget'];
 	}
  
@@ -54,7 +54,7 @@ class filtersSidebarWidget extends WP_Widget {
 		?>		
 		<p>
 			<label for="<?php echo $this->get_field_id( 'content_filter_sidebars' ); ?>" style="display: block;">ShortCode:</label> 
-			<input style="display: block; width : 100%;" id="<?php echo $this->get_field_id( 'content_filter_sidebars' ); ?>" name="<?php echo $this->get_field_name( 'content_filter_sidebars' ); ?>" value="<?php echo ($shortcode) ? esc_attr( $shortcode ) : '[wc_flat_filters tax="|"]'; ?>" />
+			<input style="display: block; width : 100%;" id="<?php echo $this->get_field_id( 'content_filter_sidebars' ); ?>" name="<?php echo $this->get_field_name( 'content_filter_sidebars' ); ?>" value="<?php echo ($shortcode) ?  $shortcode : '|'; ?>" />
 			</textarea>
 			<small>Укажите названия Атрибутов через "|" </small>
 		</p>
@@ -68,7 +68,7 @@ class filtersSidebarWidget extends WP_Widget {
 		// var_dump($new_instance); die;
 		$instance = $old_instance;
 		// var_dump($_POST['widget-filters_sidebar_widget'][2]); die;
-		$instance['content_filter_sidebars'] = ( isset( $_POST['widget-filters_sidebar_widget'][2]['content_filter_sidebars']) ) ? $_POST['widget-filters_sidebar_widget'][2]['content_filter_sidebars'] : '[wc_flat_filters tax="Тип|Количество Комнат|Район|Рынок|Тип Дома|Площадь"]'; 
+		$instance['content_filter_sidebars'] = ( isset( $_POST['widget-filters_sidebar_widget'][2]['content_filter_sidebars']) &&  $_POST['widget-filters_sidebar_widget'][2]['content_filter_sidebars']!='') ? $_POST['widget-filters_sidebar_widget'][2]['content_filter_sidebars'] : 'Тип|Количество Комнат|Район|Рынок|Тип Дома|Площадь'; 
 	    return $instance;
 	}
 }

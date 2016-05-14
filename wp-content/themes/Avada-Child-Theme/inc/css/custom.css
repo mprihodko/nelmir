@@ -84,3 +84,36 @@ body.woocommerce .thumbnails .owl-nav .owl-next{
 #content .owl-carousel .owl-item img{
 	height: 100px;
 }
+.woocommerce-pagination{
+	float: left;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+body .woocommerce-pagination ul.page-numbers:hover{
+	border: none;
+}
+body .woocommerce-pagination ul.page-numbers{
+	list-style-type: none;
+	float: left;
+	width: 100%;
+	text-align: center;
+	padding: 0;
+	margin: 10px 0;
+	border: none;
+}
+body .woocommerce-pagination ul li{
+	 
+	display: inline-block;
+}
+.modal-body form input,
+.modal-body form select{
+	position: relative;
+}
+#sidebar > li:first-child{
+	margin: 0;
+}
+#content.categories {
+    width: 52%;
+    margin-left: 24%;
+}

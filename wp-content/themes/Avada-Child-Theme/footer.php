@@ -166,14 +166,14 @@
 	    	<div class="modal-content">
 	      		<div class="modal-header">
 		        	<button type="button" class="close" data-dismiss="modal">&times;</button>
-		        	<h4 class="modal-title">Modal Header</h4>
+		        	<h4 class="modal-title">Заявка на продажу</h4>
 	      		</div>
 	      		<div class="modal-body">
-	        		<p>Some text in the modal.</p>
+	        		<?=do_shortcode('[contact-form-7 id="184" title="Заявка на продажу"]')?>
 	      		</div>
-			    <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			    </div>
+			    <!-- <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+			    </div> -->
 	    	</div>
  		</div>
 	</div>
@@ -184,14 +184,14 @@
 	    	<div class="modal-content">
 	      		<div class="modal-header">
 		        	<button type="button" class="close" data-dismiss="modal">&times;</button>
-		        	<h4 class="modal-title">Modal Header</h4>
+		        	<h4 class="modal-title">Заявка на Покупку</h4>
 	      		</div>
 	      		<div class="modal-body">
-	        		<p>Some text in the modal.</p>
+	        		<?=do_shortcode('[contact-form-7 id="183" title="Заявка на покупку"]')?>
 	      		</div>
-			    <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			    </div>
+			    <!-- <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+			    </div> -->
 	    	</div>
  		</div>
 	</div>
@@ -202,14 +202,14 @@
 	    	<div class="modal-content">
 	      		<div class="modal-header">
 		        	<button type="button" class="close" data-dismiss="modal">&times;</button>
-		        	<h4 class="modal-title">Modal Header</h4>
+		        	<h4 class="modal-title">Заявка на осмотр</h4>
 	      		</div>
 	      		<div class="modal-body">
-	        		<p>Some text in the modal.</p>
+	      			<?=do_shortcode('[contact-form-7 id="185" title="Заявка на осмотр"]')?>	        		 
 	      		</div>
-			    <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			    </div>
+			    <!-- <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+			    </div> -->
 	    	</div>
  		</div>
 	</div>
