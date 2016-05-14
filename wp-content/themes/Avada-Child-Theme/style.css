@@ -105,7 +105,7 @@ html, body {
 }
 .search-button1 {
     background-color: #fff;
-    border: 0;
+    border: 0 !important;
         
     float: left;
     background-image: url('./inc/img/lupa.png');
@@ -113,7 +113,7 @@ html, body {
     height: 40px;
     background-position: center center;
     box-shadow: none;
-    border-radius: 50%;
+    border-radius: 50% !important;
     background-repeat: no-repeat;
         position: absolute;
     right: 0;
@@ -535,6 +535,31 @@ body .yith-woocommerce-ajax-product-filter.yith-woo-ajax-navigation.woocommerce.
         color: #fff;
 }
 
+.search  #content {
+    width: 52% ;
+    margin-left: 21%;
+    float: left;
+}
+
+.search  #sidebar {
+    width: 21% !important;
+    margin-left: -73%;
+    float: left !important;
+}
+
+.search   #sidebar-2 {
+    width: 21% !important;
+    margin-left: 3%;
+}
+
+.search  #sidebar .widgettitle{
+        color: #fff;
+}
+
+.search  #sidebar-2 .widgettitle{
+        color: #fff;
+}
+
 .lpart {
     display: inline-block;
     width: 30%;
@@ -828,6 +853,9 @@ body {
     .single-product #sidebar {
         margin-left: -75%;
     }
+    .search #sidebar {
+        margin-left: -75%;
+    }
 }
 
 
@@ -918,6 +946,21 @@ min-height: 52px;
          margin-left: 0px;
       } 
       
+      .search  #content {
+          width: 100%;
+          margin-left: 0px;
+      } 
+     .search  #sidebar {
+          width: 100% !important;
+         position: relative;
+         margin-left: 0px;
+      } 
+       .search  #sidebar-2 {
+          width: 100% !important;
+         position: relative;
+         margin-left: 0px;
+      } 
+      
 #sidebar .widgettitle {
     max-width: 100%;
 
@@ -989,4 +1032,40 @@ min-height: 1px;
         
         
         
+    }
+    .search #content .search-button {
+            
+    border: none;
+    background-color: #fff;
+    background-image: url('./inc/img/lupa.png');
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    
+    }
+    
+    .search #content .search-field {
+        width: 97%;
+    }
+    
+    .search #content .search-table {
+        position: relative;
+    }
+    
+    .search #content .search-page-search-form {
+        border: none;
+        margin-bottom: 0px;
+    }
+    
+    .search #content .meta-info {
+        border-top: none;
+        margin-bottom: 0px;
+    }
+    .search #content .post {
+         margin-bottom: 10px;
     }
