@@ -213,7 +213,7 @@ width: 100%;
 }
 
 .navbarmain li{
-
+position: relative;
 width:19.6%;
 margin: 0;
 margin-right: 2px;
@@ -225,6 +225,38 @@ line-height: 3.6;
  background: linear-gradient(to top, #0a78c6, #0192dd );
  cursor: pointer;
 
+}
+.navbarmain li:hover > .sub-menu {
+    display: block;
+}
+
+.navbarmain .sub-menu{
+  position: absolute; 
+  display: none;
+  z-index: 99999;
+}
+.navbarmain .sub-menu li {
+    width:100%;
+    background: #fff;
+}
+
+.navbarmain .sub-menu li:hover > a {
+    color: #0E68B8;
+    text-decoration: underline;
+}
+
+.navbarmain .sub-menu li a {
+    color: #000;
+}
+
+
+.navbarmain  .sub-menu li:last-child{
+    width:100%;
+    background: #fff;
+}
+
+.navbarmain .sub-menu li:hover{
+     background: #fff;
 }
 
 .navbarmain .current_page_item {
@@ -931,6 +963,18 @@ min-height: 52px;
 }
 
   @media(min-width: 100px) and (max-width: 650px) {
+      .navbarmain li:before {
+          content: "+";
+          color: #fff;
+          position: absolute;
+          right: 1%;
+          top: 0;
+      }
+      .navbarmain .sub-menu{
+  position: relative; 
+  display: none;
+  z-index: 99999;
+}
       .single-product  .woocommerce-container {
           width: 100%;
           margin-left: 0px;
