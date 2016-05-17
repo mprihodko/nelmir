@@ -1113,3 +1113,8 @@ min-height: 1px;
     .search #content .post {
          margin-bottom: 10px;
     }
+    #searchsubmit{
+          border-radius: 50%;
+        border: 0;
+        cursor: pointer;
+    }
