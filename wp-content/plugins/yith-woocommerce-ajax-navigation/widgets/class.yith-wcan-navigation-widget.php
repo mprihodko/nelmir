@@ -138,12 +138,13 @@ if ( ! class_exists( 'YITH_WCAN_Navigation_Widget' ) ) {
                     echo "</ul>";
                 }
                 elseif ( $display_type == 'select' ) {
-                    $dropdown_label = __( 'Filters:', 'yith-woocommerce-ajax-navigation' );
+                    $dropdown_label = get_taxonomy($taxonomy)->labels->name;
                     ?>
 
                     <a class="yit-wcan-select-open" href="#"><?php echo apply_filters( 'yith_wcan_dropdown_default_label', $dropdown_label ) ?></a>
 
                     <?php
+
                     // Select display
                     echo "<div class='yith-wcan-select-wrapper'>";
 

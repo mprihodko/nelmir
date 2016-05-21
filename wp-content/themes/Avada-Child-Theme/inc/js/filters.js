@@ -8,11 +8,12 @@ jQuery(document).ready(function($){
 	 			$(".saleOrder").data("target", "#sale_order").attr("data-target", "#sale_order") 			
 	 		},
 			changeFilter:function(){
-				$(".select_filter_param").on("click", function(){					 
+				$(".select_filter_param").on("click", function(e){
+										 
 					$(this).parents().eq(2).prev().text($(this).html());
 					$(this).parents().eq(2).css("visibility", "hidden").css("position", "absolute");
 					$("#content").css("opacity", 0);
-					setTimeout(function(){window.location=window.location.href}, 500);
+					// setTimeout(function(){window.location=window.location.href}, 500);
 					// console.log('window.location.href ' , window.location.href);
 				})
 			},
